@@ -1,9 +1,1 @@
-
-## Eclipse Miscellaneous Files ##
-
-/.settings/
-/bin/
-
-## Minueto ##
-
-/src/org/minueto/
+/minueto/
