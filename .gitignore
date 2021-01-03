@@ -1,0 +1,12 @@
+
+## Eclipse Miscellaneous ##
+
+/.settings/
+/bin/
+
+.classpath
+.project
+
+## Minueto ##
+
+/minueto/
