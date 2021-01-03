@@ -4,7 +4,7 @@ This library provides a more human-like approach to game development by solving 
 
 All code is documented and easily modifiable for flexibility. You can find information for each of the classes used in development in guide.pdf.
 
-# Current Features
+## Current Features
  - Easier Input
 
 ## Planned Features
