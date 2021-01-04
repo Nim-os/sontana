@@ -2,7 +2,6 @@ package org.example_game;
 
 import org.minueto.MinuetoColor;
 import org.minueto.handlers.MinuetoMouse;
-import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoRectangle;
 import org.minueto.image.MinuetoText;
@@ -12,7 +11,7 @@ import org.sontana.SceneManagerException;
 import org.sontana.components.DrawComponent;
 import org.sontana.components.Position;
 import org.sontana.components.RectCollider;
-import org.sontana.game.*;
+import org.sontana.game.UIActor;
 
 /*
  * You can safely ignore this class for now, it is just a simple class that brings us to the next scene when clicked!

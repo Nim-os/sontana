@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.minueto.MinuetoFileException;
-import org.sontana.game.Behaviour;
 import org.sontana.game.Scene;
 
 /**

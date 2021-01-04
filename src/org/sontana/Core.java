@@ -1,15 +1,23 @@
 package org.sontana;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeSet;
 
-import org.minueto.*;
-import org.minueto.handlers.*;
-import org.minueto.image.*;
-import org.minueto.window.*;
+import org.minueto.MinuetoColor;
+import org.minueto.image.MinuetoImage;
+import org.minueto.image.MinuetoRectangle;
+import org.minueto.window.MinuetoFrame;
+import org.minueto.window.MinuetoWindow;
 import org.sontana.components.Component;
 import org.sontana.components.DrawComponent;
 import org.sontana.components.Position;
-import org.sontana.game.*;
+import org.sontana.game.Behaviour;
+import org.sontana.game.GameSystem;
+import org.sontana.game.Pawn;
+import org.sontana.game.Scene;
+import org.sontana.game.UIActor;
 
 /**
  * The <code>Core</code> class handles logic, rendering, and input of a game.

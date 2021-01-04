@@ -3,8 +3,9 @@ package org.example_game;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sontana.*;
-import org.sontana.game.*;
+import org.sontana.Core;
+import org.sontana.SceneManagerException;
+import org.sontana.game.Scene;
 
 public class PopBall
 {

@@ -1,7 +1,7 @@
 package org.example_game;
 
 
-import org.sontana.game.*;
+import org.sontana.game.Scene;
 
 public class GameScene extends Scene
 {

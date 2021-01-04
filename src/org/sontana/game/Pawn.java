@@ -1,10 +1,9 @@
 package org.sontana.game;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.minueto.image.*;
+import org.minueto.image.MinuetoImage;
 import org.sontana.Console;
 import org.sontana.SceneManager;
 import org.sontana.components.Component;

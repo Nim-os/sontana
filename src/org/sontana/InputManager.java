@@ -3,9 +3,10 @@ package org.sontana;
 import java.util.ArrayList;
 
 import org.minueto.MinuetoEventQueue;
-import org.minueto.handlers.*;
+import org.minueto.handlers.MinuetoKeyboardHandler;
+import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.window.MinuetoWindow;
-import org.sontana.game.*;
+import org.sontana.game.Actor;
 
 public class InputManager
 {

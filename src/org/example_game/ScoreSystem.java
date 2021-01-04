@@ -4,7 +4,7 @@ import org.minueto.MinuetoStopWatch;
 import org.sontana.Console;
 import org.sontana.SceneManager;
 import org.sontana.SceneManagerException;
-import org.sontana.game.*;
+import org.sontana.game.GameSystem;
 
 public class ScoreSystem extends GameSystem
 {

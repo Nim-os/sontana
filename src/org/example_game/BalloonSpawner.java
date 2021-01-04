@@ -2,10 +2,10 @@ package org.example_game;
 
 import java.util.Random;
 
-import org.sontana.*;
-import org.sontana.components.Position;
-import org.sontana.game.*;
 import org.minueto.MinuetoColor;
+import org.sontana.Core;
+import org.sontana.components.Position;
+import org.sontana.game.GameSystem;
 
 public class BalloonSpawner extends GameSystem
 {

@@ -3,9 +3,7 @@ package org.sontana.components;
 
 import org.minueto.MinuetoColor;
 import org.minueto.image.MinuetoRectangle;
-
 import org.sontana.Toolbox;
-import org.sontana.game.Pawn;
 
 public class RectCollider extends Collider
 {

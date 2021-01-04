@@ -1,11 +1,12 @@
 package org.sontana.game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import org.minueto.*;
-import org.minueto.image.*;
-import org.sontana.Console;
-import org.sontana.SceneManagerException;
+import org.minueto.MinuetoColor;
+import org.minueto.MinuetoFileException;
+import org.minueto.image.MinuetoImage;
 
 /**
  * The <code>Scene</code> class represents different game stages.

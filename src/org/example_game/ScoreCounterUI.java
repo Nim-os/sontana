@@ -5,7 +5,7 @@ import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoText;
 import org.sontana.Core;
 import org.sontana.components.Position;
-import org.sontana.game.*;
+import org.sontana.game.UIActor;
 
 public class ScoreCounterUI extends UIActor
 {
