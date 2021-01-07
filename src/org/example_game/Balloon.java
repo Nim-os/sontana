@@ -3,10 +3,10 @@ package org.example_game;
 import org.minueto.MinuetoColor;
 import org.minueto.handlers.MinuetoMouse;
 import org.minueto.image.MinuetoCircle;
-import org.sontana.Core;
-import org.sontana.SceneManager;
 import org.sontana.components.Position;
 import org.sontana.components.RectCollider;
+import org.sontana.engine.Core;
+import org.sontana.engine.SceneManager;
 import org.sontana.game.Actor;
 import org.sontana.game.Behaviour;
 

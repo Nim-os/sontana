@@ -3,8 +3,8 @@ package org.example_game;
 import org.minueto.MinuetoColor;
 import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoText;
-import org.sontana.Core;
 import org.sontana.components.Position;
+import org.sontana.engine.Core;
 import org.sontana.game.UIActor;
 
 public class ScoreCounterUI extends UIActor

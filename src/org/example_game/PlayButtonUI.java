@@ -5,12 +5,12 @@ import org.minueto.handlers.MinuetoMouse;
 import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoRectangle;
 import org.minueto.image.MinuetoText;
-import org.sontana.Core;
-import org.sontana.SceneManager;
-import org.sontana.SceneManagerException;
 import org.sontana.components.DrawComponent;
 import org.sontana.components.Position;
 import org.sontana.components.RectCollider;
+import org.sontana.engine.Core;
+import org.sontana.engine.SceneManager;
+import org.sontana.engine.SceneManagerException;
 import org.sontana.game.UIActor;
 
 /*
