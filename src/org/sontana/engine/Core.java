@@ -10,15 +10,14 @@ import org.minueto.image.MinuetoImage;
 import org.minueto.image.MinuetoRectangle;
 import org.minueto.window.MinuetoFrame;
 import org.minueto.window.MinuetoWindow;
-
+import org.sontana.Behaviour;
+import org.sontana.GameSystem;
+import org.sontana.Pawn;
+import org.sontana.Scene;
+import org.sontana.UIActor;
 import org.sontana.components.Component;
 import org.sontana.components.DrawComponent;
 import org.sontana.components.Position;
-import org.sontana.game.Behaviour;
-import org.sontana.game.GameSystem;
-import org.sontana.game.Pawn;
-import org.sontana.game.Scene;
-import org.sontana.game.UIActor;
 import org.sontana.tools.*;
 
 /**

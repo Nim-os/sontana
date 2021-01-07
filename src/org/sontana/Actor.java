@@ -1,4 +1,4 @@
-package org.sontana.game;
+package org.sontana;
 
 import org.minueto.handlers.MinuetoKeyboardHandler;
 import org.minueto.handlers.MinuetoMouseHandler;

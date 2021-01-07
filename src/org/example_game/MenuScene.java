@@ -1,7 +1,7 @@
 package org.example_game;
 
 import org.minueto.MinuetoColor;
-import org.sontana.game.Scene;
+import org.sontana.Scene;
 
 public class MenuScene extends Scene
 {

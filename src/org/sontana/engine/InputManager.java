@@ -6,7 +6,7 @@ import org.minueto.MinuetoEventQueue;
 import org.minueto.handlers.MinuetoKeyboardHandler;
 import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.window.MinuetoWindow;
-import org.sontana.game.Actor;
+import org.sontana.Actor;
 
 public class InputManager
 {

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.minueto.MinuetoFileException;
-import org.sontana.game.Scene;
+import org.sontana.Scene;
 
 /**
  * <code>SceneManager</code> handles the switching, loading, and referencing of <code>Scene</code>s.

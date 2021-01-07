@@ -1,9 +1,9 @@
 package org.example_game;
 
 import org.minueto.MinuetoStopWatch;
+import org.sontana.GameSystem;
 import org.sontana.engine.SceneManager;
 import org.sontana.engine.SceneManagerException;
-import org.sontana.game.GameSystem;
 import org.sontana.tools.Console;
 
 public class ScoreSystem extends GameSystem

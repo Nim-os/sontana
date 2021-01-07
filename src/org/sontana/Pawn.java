@@ -1,4 +1,4 @@
-package org.sontana.game;
+package org.sontana;
 
 import java.util.ArrayList;
 import java.util.List;

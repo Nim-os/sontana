@@ -1,7 +1,7 @@
 package org.sontana.components;
 
 import org.minueto.image.MinuetoImage;
-import org.sontana.game.Pawn;
+import org.sontana.Pawn;
 
 public class DebugPawn extends Pawn
 {

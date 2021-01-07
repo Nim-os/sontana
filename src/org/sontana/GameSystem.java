@@ -1,4 +1,4 @@
-package org.sontana.game;
+package org.sontana;
 
 import org.sontana.engine.SceneManager;
 
