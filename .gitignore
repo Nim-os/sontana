@@ -1,2 +1,5 @@
+/.settings/
+.classpath
+
 /bin/
 /src/org/minueto/
