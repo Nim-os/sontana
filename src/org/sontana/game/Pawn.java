@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.minueto.image.MinuetoImage;
-import org.sontana.Console;
-import org.sontana.SceneManager;
 import org.sontana.components.Component;
 import org.sontana.components.Layer;
 import org.sontana.components.Position;
+import org.sontana.engine.SceneManager;
+import org.sontana.tools.Console;
 
 /**
  * <code>Pawn</code>s are objects in a <code>Scene</code> that are rendered.

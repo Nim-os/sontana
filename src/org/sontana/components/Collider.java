@@ -1,7 +1,7 @@
 package org.sontana.components;
 
-import org.sontana.Console;
 import org.sontana.game.Pawn;
+import org.sontana.tools.Console;
 
 /**
  * TODO

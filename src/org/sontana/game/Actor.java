@@ -3,10 +3,10 @@ package org.sontana.game;
 import org.minueto.handlers.MinuetoKeyboardHandler;
 import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.image.MinuetoImage;
-import org.sontana.Console;
-import org.sontana.InputManager;
 import org.sontana.components.Collider;
 import org.sontana.components.Position;
+import org.sontana.engine.InputManager;
+import org.sontana.tools.Console;
 
 /**
  * <code>Actor</code>s are objects in a <code>Scene</code> that are rendered and react to input.

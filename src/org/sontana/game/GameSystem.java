@@ -1,6 +1,6 @@
 package org.sontana.game;
 
-import org.sontana.SceneManager;
+import org.sontana.engine.SceneManager;
 
 /**
  * <code>GameSystem</code>s are objects in a <code>Scene</code> that are not rendered.
