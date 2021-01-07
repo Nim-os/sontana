@@ -111,9 +111,17 @@ public class Position
 		y += pPosition.y;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "(" + x + ", " + y + ")";
+	}
+	
+	
 	/*
 	 * Helper Functions
 	 */
+	
 	
 	/**
 	 * Get the distance between two <code>Position</code>s.
@@ -168,9 +176,35 @@ public class Position
 		return ret;
 	}
 	
-	@Override
-	public String toString()
+	/**
+	 * Add two <code>Position</code>s together.
+	 * @param pFirst the first <code>Position</code>.
+	 * @param pSecond the second <code>Position</code>.
+	 * @return the new <code>Position</code>.
+	 */
+	public static Position add(Position pFirst, Position pSecond)
 	{
-		return "(" + x + ", " + y + ")";
+		Position ret = new Position(pFirst);
+
+		ret.x += pSecond.x;
+		ret.y += pSecond.y;
+		
+		return ret;
+	}
+	
+	/**
+	 * Subtract two <code>Position</code>s.
+	 * @param pFirst the first <code>Position</code>.
+	 * @param pSecond the second <code>Position</code>.
+	 * @return the new <code>Position</code>.
+	 */
+	public static Position sub(Position pFirst, Position pSecond)
+	{
+		Position ret = new Position(pFirst);
+		
+		ret.x -= pSecond.x;
+		ret.y -= pSecond.y;
+		
+		return ret;
 	}
 }
