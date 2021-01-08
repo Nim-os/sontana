@@ -1,4 +1,4 @@
-package org.example_game;
+package org.example_games.pop_ball;
 
 import org.minueto.MinuetoColor;
 import org.sontana.Scene;

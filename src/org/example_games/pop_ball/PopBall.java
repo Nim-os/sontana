@@ -1,4 +1,4 @@
-package org.example_game;
+package org.example_games.pop_ball;
 
 import java.util.ArrayList;
 import java.util.List;
