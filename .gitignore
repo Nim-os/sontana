@@ -1,6 +1,5 @@
-.settings/
-bin/
+/.settings/
 .classpath
-.project
 
-src/org/minueto/
+/bin/
+/src/org/minueto/
