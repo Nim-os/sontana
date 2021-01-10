@@ -9,7 +9,7 @@ import org.sontana.tools.Console;
  * @author Christophe Simon
  *
  */
-public abstract class Collider // AbstractCollider or BaseCollider?
+public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 {
 	/**
 	 * Pawn to 'Hook' onto for updating the Position.
@@ -38,7 +38,11 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 		origin = new Position(pOrigin);
 	}
 	
-	
+	/**
+	 * Tests if a point intersects with this <code>Collider</code>.
+	 * @param pPoint the point as a <code>Position</code>.
+	 * @return if the point intersects.
+	 */
 	public final boolean testPoint(Position pPoint)
 	{
 		if(hook == null)
@@ -60,7 +64,11 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 	protected abstract boolean testPointIntersection(Position pPoint);
 	
 	
-	
+	/**
+	 * Command helper method that gets the point closest to the <code>Collider</code>.
+	 * @param pPoint the point as a <code>Position</code>.
+	 * @return the closest point to the <code>Collider</code>.
+	 */
 	protected final Position getClosestPoint(Position pPoint)
 	{
 		if(hook == null)
@@ -82,13 +90,19 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 	protected abstract Position getPointClosestToPoint(Position pPoint);
 	
 	
-	
+	/**
+	 * Tests if this <code>Collider</code> intersects with another <code>Collider</code>. 
+	 * @param pCollider the other <code>Collider</code>.
+	 * @return if the <code>Collider</code> intersects.
+	 */
 	public final boolean testCollider(Collider pCollider)
 	{
 		return testPoint(pCollider.getClosestPoint(origin));
 	}
 	
-	
+	/**
+	 * Draws a Debug image to visually represent the area of the the <code>Collider</code>.
+	 */
 	public final void draw()
 	{
 		if(hook == null)
@@ -111,20 +125,20 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 		isDrawing = !isDrawing;
 	}
 	
+	/**
+	 * Not meant to be used outside of sontana, necessary to be public due to package limitations.
+	 * Used to keep the position of the <code>Collider</code> updated as well as add the Debug image as a component.
+	 * @param pHook the <code>Pawn</code> to hook the <code>Collider</code>
+	 */
 	public final void setHook(Pawn pHook)
 	{
 		hook = pHook;
-		
-		//debugPawn.getPosition().set(hook.getPosition());
 		
 	}
 	
 	private final void updateColliderPosition()
 	{
 		origin.set(hook.getPosition());
-			
-		
-		//debug.getPosition().set(hook.getPosition());
 		
 	}
 	
@@ -132,7 +146,7 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 }
 
 /**
- * 
+ * Debug <code>DrawComponent</code> used to display <code>Collider</code>s.
  * @author Christophe Simon
  *
  */
