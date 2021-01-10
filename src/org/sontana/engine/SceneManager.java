@@ -146,6 +146,8 @@ public class SceneManager
 	private static void unloadScene(Scene pScene)
 	{
 		// TODO Optimise garbage collection for faster load speed
+		
+		InputManager.flush();
 	}
 	
 	/**

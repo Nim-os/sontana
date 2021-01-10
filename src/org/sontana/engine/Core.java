@@ -130,7 +130,7 @@ public final class Core
 		}
 		
 		
-		InputManager.flush();
+		//InputManager.flush();
 		
 		
 	}
