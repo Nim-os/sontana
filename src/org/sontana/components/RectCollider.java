@@ -16,7 +16,7 @@ public class RectCollider extends Collider
 	
 	public RectCollider(Position pOrigin, Position pOffset)
 	{
-		super(new DebugPawn(new MinuetoRectangle((int)pOffset.getX(), (int)pOffset.getY(), MinuetoColor.RED, false)), pOrigin);
+		super(new Debug(new MinuetoRectangle((int)pOffset.getX(), (int)pOffset.getY(), MinuetoColor.RED, false)), pOrigin);
 		
 		offset = new Position(pOffset);
 	}

@@ -1,5 +1,6 @@
 package org.sontana.components;
 
+import org.minueto.image.MinuetoImage;
 import org.sontana.Pawn;
 import org.sontana.tools.Console;
 
@@ -18,7 +19,7 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 	/**
 	 * Pawn to draw the Collider for debugging purposes.
 	 */
-	private DebugPawn debugPawn;
+	private Debug debug;
 	
 	
 	/**
@@ -30,9 +31,9 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 	private boolean isDrawing = false;
 	
 	
-	protected Collider(DebugPawn pDebugPawn, Position pOrigin)
+	protected Collider(Debug pDebug, Position pOrigin)
 	{
-		debugPawn = pDebugPawn;
+		debug = pDebug;
 		
 		origin = new Position(pOrigin);
 	}
@@ -100,11 +101,11 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 		
 		if(isDrawing)
 		{
-			debugPawn.disable();
+			hook.getComponents().remove(debug);
 		}
 		else
 		{
-			debugPawn.enable();
+			hook.getComponents().add(debug);
 		}
 		
 		isDrawing = !isDrawing;
@@ -114,7 +115,8 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 	{
 		hook = pHook;
 		
-		debugPawn.getPosition().set(hook.getPosition());
+		//debugPawn.getPosition().set(hook.getPosition());
+		
 	}
 	
 	private final void updateColliderPosition()
@@ -122,7 +124,24 @@ public abstract class Collider // AbstractCollider or BaseCollider?
 		origin.set(hook.getPosition());
 			
 		
-		debugPawn.getPosition().set(hook.getPosition());
+		//debug.getPosition().set(hook.getPosition());
+		
+	}
+	
+	
+}
+
+/**
+ * 
+ * @author Christophe Simon
+ *
+ */
+class Debug extends DrawComponent
+{
+
+	public Debug(MinuetoImage pSprite)
+	{
+		super(pSprite);
 		
 	}
 }
