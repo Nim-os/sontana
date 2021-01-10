@@ -5,6 +5,8 @@ import java.util.HashMap;
 public class StateMachine
 {
 
+	// Make statemachines generic instead of String based?
+	
 	class Node
 	{
 		private Node(String name) { nodeName = name; }
@@ -24,10 +26,23 @@ public class StateMachine
 		nodes.put(pRoot, root);
 	}
 	
-	public static StateMachine getStateMachine(String pName, String pRoot)
+	public static StateMachine getStateMachine(String pName)
 	{
 		if(stateMachines.containsKey(pName))
 		{
+			return stateMachines.get(pName);
+		}
+		
+		Console.logError("StateMachine " + pName + " doesn't exist.");
+		
+		return null;
+	}
+	
+	public static StateMachine makeStateMachine(String pName, String pRoot)
+	{
+		if(stateMachines.containsKey(pName))
+		{
+			Console.logWarning("StateMachine " + pName + " already exists.");
 			return stateMachines.get(pName);
 		}
 		
@@ -54,6 +69,10 @@ public class StateMachine
 		if(nodes.containsKey(pNodeName))
 		{
 			cur = nodes.get(pNodeName);
+		}
+		else
+		{
+			Console.logWarning("StateMachine " + name + " does contain the state " + pNodeName);
 		}
 	}
 	
