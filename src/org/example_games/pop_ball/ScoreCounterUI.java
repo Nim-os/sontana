@@ -5,7 +5,10 @@ import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoText;
 import org.sontana.UIActor;
 import org.sontana.components.Position;
+import org.sontana.components.RectCollider;
+import org.sontana.engine.Camera;
 import org.sontana.engine.Core;
+import org.sontana.tools.Console;
 
 public class ScoreCounterUI extends UIActor
 {
@@ -17,11 +20,14 @@ public class ScoreCounterUI extends UIActor
 	{
 		super("ScoreCounter", 
 				new MinuetoText("Score: 0", new MinuetoFont(MinuetoFont.Serif, 18, true, false), MinuetoColor.BLACK), 
-				null, 
+				new RectCollider(new Position(60,25)), 
 				true);
 		
 		position = new Position(10,10);
 		
+		collider.draw();
+		
+		registerKeyboardInput();
 	}
 	
 	/*
@@ -39,6 +45,28 @@ public class ScoreCounterUI extends UIActor
 		}
 		
 		sprite = new MinuetoText("Score: " + score, new MinuetoFont(MinuetoFont.Serif, 18, true, false), MinuetoColor.BLACK, true);
+	}
+	
+	@Override
+	protected void onKeyType(char letter)
+	{
+		switch(letter)
+		{
+			case 'i':
+				Camera.setPosition(Position.add(Camera.getPosition(), new Position(0,3)));
+				break;
+			case 'k':
+				Camera.setPosition(Position.add(Camera.getPosition(), new Position(0,-3)));
+				break;
+			case 'j':
+				Camera.setPosition(Position.add(Camera.getPosition(), new Position(3,0)));
+				break;
+			case 'l':
+				Camera.setPosition(Position.add(Camera.getPosition(), new Position(-3,0)));
+				break;
+			default:
+				Console.log("Key pressed: " + letter);
+		}
 	}
 
 }
