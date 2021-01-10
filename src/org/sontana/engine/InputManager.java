@@ -27,27 +27,34 @@ public class InputManager
 	 * Registering functions
 	 */
 	
-	public static void registerMouse(MinuetoMouseHandler handler)
+	public static void registerMouse(Actor handler)
 	{
 		gameWindow.registerMouseHandler(handler, eventQueue);
 		
-	}
-	
-	public static void unregisterMouse(MinuetoMouseHandler handler)
-	{
-		gameWindow.unregisterMouseHandler(handler, eventQueue);
+		activeInputs.add(handler);
 		
 	}
 	
-	public static void registerKeyboard(MinuetoKeyboardHandler handler)
+	public static void unregisterMouse(Actor handler)
+	{
+		gameWindow.unregisterMouseHandler(handler, eventQueue);
+
+		activeInputs.remove(handler);
+	}
+	
+	public static void registerKeyboard(Actor handler)
 	{
 		gameWindow.registerKeyboardHandler(handler, eventQueue);
 		
+		activeInputs.add(handler);
+		
 	}
 	
-	public static void unregisterKeyboard(MinuetoKeyboardHandler handler)
+	public static void unregisterKeyboard(Actor handler)
 	{
 		gameWindow.unregisterKeyboardHandler(handler, eventQueue);
+		
+		activeInputs.remove(handler);
 		
 	}
 	
@@ -62,6 +69,12 @@ public class InputManager
 	
 	public static void flush()
 	{
+		for(Actor actor : activeInputs)
+		{
+			gameWindow.unregisterMouseHandler(actor, eventQueue);
+			gameWindow.unregisterKeyboardHandler(actor, eventQueue);
+		}
+		
 		activeInputs.clear();
 	}
 	
