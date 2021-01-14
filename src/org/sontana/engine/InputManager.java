@@ -63,6 +63,11 @@ public class InputManager
 			eventQueue.handle();
 		}
 		
+		/*
+		 * Register all input after previous input has executed.
+		 * Prevents activating something with input and having an object enabled on the input from recieving input as well.
+		 */
+		
 		waitingQueueMouse.stream()
 			.forEach(actor -> 
 			{
