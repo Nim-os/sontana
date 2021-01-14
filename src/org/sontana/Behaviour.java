@@ -96,6 +96,15 @@ public class Behaviour
 		return enabled;
 	}
 	
+	/*
+	 * Static Methods.
+	 */
+	
+	public static final void instantiate(Behaviour pBehaviour)
+	{
+		
+	}
+	
 	// Keeping name and tag public for now, no serious need to have them be protected. Can discuss
 //	/**
 //	 * Returns the Behaviour's name.
