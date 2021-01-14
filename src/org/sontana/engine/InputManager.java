@@ -10,18 +10,12 @@ import org.sontana.Actor;
 
 public class InputManager
 {
+	private static final ArrayList<Actor> waitingQueueMouse = new ArrayList<>();
+	private static final ArrayList<Actor> waitingQueueKeyboard = new ArrayList<>();
 	private static final ArrayList<Actor> activeInputs = new ArrayList<>();
 	private static final MinuetoEventQueue eventQueue = new MinuetoEventQueue();
 
 	private static MinuetoWindow gameWindow;
-	/**
-	 * Set the hook for the <code>InputManager</code>.
-	 * @param window
-	 */
-	public static void setHook(MinuetoWindow window)
-	{
-		gameWindow = window;
-	}
 	
 	/*
 	 * Registering functions
@@ -29,10 +23,7 @@ public class InputManager
 	
 	public static void registerMouse(Actor handler)
 	{
-		gameWindow.registerMouseHandler(handler, eventQueue);
-		
-		activeInputs.add(handler);
-		
+		waitingQueueMouse.add(handler);
 	}
 	
 	public static void unregisterMouse(Actor handler)
@@ -43,10 +34,8 @@ public class InputManager
 	}
 	
 	public static void registerKeyboard(Actor handler)
-	{
-		gameWindow.registerKeyboardHandler(handler, eventQueue);
-		
-		activeInputs.add(handler);
+	{		
+		waitingQueueKeyboard.add(handler);
 		
 	}
 	
@@ -58,16 +47,42 @@ public class InputManager
 		
 	}
 	
-	public static void executeInput()
+	/*
+	 * Package functions
+	 */
+	
+	static void setHook(MinuetoWindow window)
+	{
+		gameWindow = window;
+	}
+	
+	static void executeInput()
 	{
 		while(eventQueue.hasNext())
 		{
 			eventQueue.handle();
 		}
+		
+		waitingQueueMouse.stream()
+			.forEach(actor -> 
+			{
+				registerMouseInternal(actor);
+				activeInputs.add(actor);
+			});
+		
+		waitingQueueKeyboard.stream()
+			.forEach(actor -> 
+			{
+				registerKeyboardInternal(actor);
+				activeInputs.add(actor);
+			});
+
+		waitingQueueMouse.clear();
+		waitingQueueKeyboard.clear();
 	}
 	
 	
-	public static void flush()
+	static void flush()
 	{
 		for(Actor actor : activeInputs)
 		{
@@ -75,7 +90,22 @@ public class InputManager
 			gameWindow.unregisterKeyboardHandler(actor, eventQueue);
 		}
 		
+		waitingQueueMouse.clear();
+		waitingQueueKeyboard.clear();
+		
 		activeInputs.clear();
 	}
 	
+	
+	private static void registerMouseInternal(Actor handler)
+	{
+		gameWindow.registerMouseHandler(handler, eventQueue);
+		
+	}
+	
+	private static void registerKeyboardInternal(Actor handler)
+	{
+		gameWindow.registerKeyboardHandler(handler, eventQueue);
+		
+	}
 }
