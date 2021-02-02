@@ -7,12 +7,19 @@ package org.sontana.tools;
  */
 public class Console
 {
+	private static boolean suppressed = false;
+	
 	/**
 	 * Prints a message to STDOUT.
 	 * @param message the message.
 	 */
 	public static void log(String message)
 	{
+		if (suppressed)
+		{
+			return;
+		}
+		
 		System.out.println("Console Log:\t" + message); // TODO Find a better term than Console Log?
 	}
 	
@@ -22,6 +29,11 @@ public class Console
 	 */
 	public static void logWarning(String message)
 	{
+		if (suppressed)
+		{
+			return;
+		}
+		
 		System.out.println("Warning Log:\t" + getLogMessage(new Exception().getStackTrace(), message));
 	}
 	
@@ -30,13 +42,29 @@ public class Console
 	 * @param message the message.
 	 */
 	public static void logError(String message)
-	{		
+	{
+		if (suppressed)
+		{
+			return;
+		}
+		
 		System.err.println("Error Log:\t" + getLogMessage(new Exception().getStackTrace(), message));
 	}
+	
+	/**
+	 * Suppresses future logs. Useful for testing or release builds.
+	 * @param val true to suppress.
+	 */
+	public static void suppressLogs(boolean val)
+	{		
+		suppressed = val;
+	}
+	
 	
 	/*
 	 * Helpers
 	 */
+	
 	
 	private static String getLogMessage(StackTraceElement[] trace, String message)
 	{
