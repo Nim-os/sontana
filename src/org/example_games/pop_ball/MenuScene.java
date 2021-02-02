@@ -1,6 +1,7 @@
 package org.example_games.pop_ball;
 
 import org.minueto.MinuetoColor;
+import org.sontana.Behaviour;
 import org.sontana.Scene;
 
 public class MenuScene extends Scene
@@ -20,7 +21,7 @@ public class MenuScene extends Scene
 		 * Here, we are just creating Actors to use as UI.
 		 */
 		
-		new PlayButtonUI();
+		Behaviour.instantiate(new PlayButtonUI());
 		
 	}
 

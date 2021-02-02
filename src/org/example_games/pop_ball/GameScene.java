@@ -1,6 +1,7 @@
 package org.example_games.pop_ball;
 
 
+import org.sontana.Behaviour;
 import org.sontana.Scene;
 
 public class GameScene extends Scene
@@ -52,6 +53,8 @@ public class GameScene extends Scene
 		
 		score = new ScoreSystem(scoreCounter, balloons);
 		
+		Behaviour.instantiate(spawner, scoreCounter, score);
+		
 		for(int i = 0; i < balloons; i++)
 		{
 			/*
@@ -62,7 +65,7 @@ public class GameScene extends Scene
 			 * If you don't save it locally but want it somewhere else in another class (pre-cache any objects you use in Scene please :^( )
 			 * you can use <Scene>.getBehaviourByName() to return a reference. To see an example of this check the end of Balloon!
 			 */
-			spawner.SpawnBalloon("Balloon: " + i);
+			Behaviour.instantiate(spawner.SpawnBalloon("Balloon: " + i));
 		}
 		
 	}
