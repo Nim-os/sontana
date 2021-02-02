@@ -28,10 +28,10 @@ public final class Core
 	public static int frameRate = 0;
 	
 	public static final String windowTitle = "Colt Express";
-	public static final int windowWidth = 1000;
-	public static final int windowHeight = 800;
+	public static final int windowWidth = 1000, windowHeight = 800;
 	
-	private static boolean coreRunning = false;
+	private static boolean coreRunning = false, corePaused = false;
+
 	
 	private final MinuetoWindow gameWindow;
 	private final float minDeltaTime;
@@ -75,6 +75,7 @@ public final class Core
 	public static void Stop()
 	{
 		coreRunning = false;
+		corePaused = true;
 	}
 	
 	public static void Continue() throws SceneManagerException
@@ -91,6 +92,7 @@ public final class Core
 		}
 		
 		coreRunning = true;
+		corePaused = false;
 		
 		instance.mainLoop();
 		
@@ -98,7 +100,16 @@ public final class Core
 	
 	public static void Exit()
 	{
-		coreRunning = false;
+		if (!coreRunning && corePaused)
+		{
+			corePaused = false;
+			
+			instance.gameWindow.close();
+		}
+		else
+		{
+			coreRunning = false;
+		}
 	}
 	
 	
@@ -106,7 +117,7 @@ public final class Core
 	/**
 	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>Scene</code> changes.
 	 */
-	public static void sceneChange()
+	static void sceneChange()
 	{
 		instance.systems = new ArrayList<>(SceneManager.getActiveScene().getSystems());
 		
@@ -127,11 +138,7 @@ public final class Core
 		for(Pawn p : SceneManager.getActiveScene().getPawns())
 		{
 			instance.pawns.add(p);
-		}
-		
-		
-		//InputManager.flush();
-		
+		}		
 		
 	}
 	
@@ -247,7 +254,10 @@ public final class Core
 			// NO CODE BELOW THIS LINE
 		}
 
-		instance.gameWindow.close();
+		if (!corePaused)
+		{
+			instance.gameWindow.close();
+		}
 	}
 	
 	/**
