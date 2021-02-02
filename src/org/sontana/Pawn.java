@@ -7,7 +7,6 @@ import org.minueto.image.MinuetoImage;
 import org.sontana.components.Component;
 import org.sontana.components.Layer;
 import org.sontana.components.Position;
-import org.sontana.engine.SceneManager;
 import org.sontana.tools.Console;
 
 /**
@@ -69,11 +68,6 @@ public class Pawn extends Behaviour
 			Console.logError(pawnName + " has null sprite, disabling to prevent crash.");
 			disable();
 		}
-		
-		/*
-		 * Add Pawn to the scene so that its logic is executed and that it is rendered
-		 */
-		SceneManager.getActiveScene().addPawn(this);
 	}
 	
 	

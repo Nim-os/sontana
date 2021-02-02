@@ -1,5 +1,8 @@
 package org.sontana;
 
+import org.sontana.engine.SceneManager;
+import org.sontana.tools.Console;
+
 /**
  * The <code>Behaviour</code> class is what objects in a <code>Scene</code> derive from.
  * <p>
@@ -19,6 +22,9 @@ public class Behaviour
 	 */
 	public final String tag;
 	
+	/**
+	 * Indicates whether the Behaviour is enabled or not.
+	 */
 	private boolean enabled;
 	
 	
@@ -100,28 +106,29 @@ public class Behaviour
 	 * Static Methods.
 	 */
 	
-	public static final void instantiate(Behaviour pBehaviour)
+	/**
+	 * Instantiate a <code>Behaviour</code> by adding it to the current active <code>Scene</code>.
+	 * @param pBehaviours the behaviours to be added.
+	 */
+	public static final void instantiate(Behaviour ... pBehaviours)
 	{
-		
+		for (Behaviour b : pBehaviours)
+		{
+			if (b instanceof Pawn)
+			{
+				SceneManager.getActiveScene().addPawn((Pawn) b);
+			}
+			else if (b instanceof GameSystem)
+			{
+				SceneManager.getActiveScene().addSystem((GameSystem) b);
+			}
+			else
+			{
+				Console.logWarning("Behaviour " + b.name + " not a subtype of Pawn or GameSystem.");
+			}
+			
+			b.initialise();
+		}
 	}
-	
-	// Keeping name and tag public for now, no serious need to have them be protected. Can discuss
-//	/**
-//	 * Returns the Behaviour's name.
-//	 * @return the name.
-//	 */
-//	public String getName()
-//	{
-//		return name;
-//	}
-//	
-//	/**
-//	 * Returns the Behaviour's tag.
-//	 * @return the tag.
-//	 */
-//	public String getTag()
-//	{
-//		return tag;
-//	}
 	
 }
