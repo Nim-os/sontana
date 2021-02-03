@@ -34,7 +34,7 @@ public class GameScene extends Scene
 	 * It is suited to cache objects when we generate them.
 	 */
 	@Override
-	public void initialiseScene()
+	public void initialise()
 	{
 		/*
 		 * Here we are just creating a GameSystem that will run inside the Scene.

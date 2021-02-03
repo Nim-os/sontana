@@ -30,7 +30,7 @@ public final class Core
 	public static final String windowTitle = "Colt Express";
 	public static final int windowWidth = 1000, windowHeight = 800;
 	
-	private static boolean coreRunning = false, corePaused = false;
+	private static boolean coreRunning = false, corePaused = false, sceneChange = false;
 
 	
 	private final MinuetoWindow gameWindow;
@@ -74,7 +74,6 @@ public final class Core
 	
 	public static void Stop()
 	{
-		coreRunning = false;
 		corePaused = true;
 	}
 	
@@ -91,25 +90,13 @@ public final class Core
 			Console.logError("Cannot continue Core, instance already running.");
 		}
 		
-		coreRunning = true;
-		corePaused = false;
-		
-		instance.mainLoop();
-		
+		corePaused = false;		
 	}
 	
 	public static void Exit()
 	{
-		if (!coreRunning && corePaused)
-		{
-			corePaused = false;
-			
-			instance.gameWindow.close();
-		}
-		else
-		{
-			coreRunning = false;
-		}
+		coreRunning = false;
+		
 	}
 	
 	
@@ -119,17 +106,22 @@ public final class Core
 	 */
 	static void sceneChange()
 	{
-		instance.systems = new ArrayList<>(SceneManager.getActiveScene().getSystems());
+		sceneChange = true;	
 		
-		instance.pawns.clear();
+	}
+	
+	private void handleSceneChange()
+	{
+		systems = new ArrayList<>(SceneManager.getActiveScene().getSystems());
+		
+		pawns.clear();
 		
 		/*
 		 * Draw a background scene.
 		 */
-		instance.sceneBackground = SceneManager.getActiveScene().getBackgroundImage();
+		sceneBackground = SceneManager.getActiveScene().getBackgroundImage();
 		
-		instance.sceneColour = SceneManager.getActiveScene().getBackgroundColour();
-		
+		sceneColour = SceneManager.getActiveScene().getBackgroundColour();
 		
 		
 		/*
@@ -137,9 +129,8 @@ public final class Core
 		 */
 		for(Pawn p : SceneManager.getActiveScene().getPawns())
 		{
-			instance.pawns.add(p);
-		}		
-		
+			pawns.add(p);
+		}	
 	}
 	
 	private MinuetoImage sceneBackground;
@@ -166,22 +157,7 @@ public final class Core
 		
 		systems = new ArrayList<>();
 		
-		pawns = new TreeSet<>(new Comparator<Pawn>()
-				{
-
-					public int compare(Pawn o1, Pawn o2) // Don't return 0 since it will think they are equal and it's a set
-					{
-						/*
-						 * Pawns with a higher sorting position will be rendered first
-						 */
-						if(o1.getSortPosition() > o2.getSortPosition())
-						{
-							return -1;
-						}
-						return 1;
-					}
-			
-				});
+		pawns = new TreeSet<>(Pawn.BY_SORT_POSITION_COMPARATOR);
 	}
 	
 	
@@ -195,7 +171,26 @@ public final class Core
 		while(coreRunning)
 		{
 			// NO CODE ABOVE THIS LINE
+			
+			if (sceneChange)
+			{
+				sceneChange = false;
+				
+				handleSceneChange();
+			}
+			
+			/* Uncomment when multi-threaded
+			while (corePaused)
+			{
+				if (!coreRunning)
+				{
+					instance.gameWindow.close();
+				}
+			}
+			*/
+			
 			CoreTime.beginFrame();
+			
 			
 			/*
 			 * Gives us how many frames are being built per second - Only works when frame rate is uncapped?
@@ -203,33 +198,33 @@ public final class Core
 			frameRate = (int)(1/CoreTime.getLastDeltaTime());
 			
 			
-
 			/*
 			 * Handles input
 			 */
 			InputManager.executeInput();
 			
-			if(!coreRunning)
+			if(!coreRunning || corePaused || sceneChange)
 			{
-				break;
+				continue;
 			}
+			
 			
 			/*
 			 * Handles Behaviour logic
 			 */
 			executeLogic();
 			
-			if(!coreRunning)
+			if(!coreRunning || corePaused || sceneChange)
 			{
-				break;
+				continue;
 			}
+			
 			
 			/*
 			 * Handles rendering
 			 */
 			executeRendering();
-			
-			
+						
 			
 			/*
 			 * Gives us the time that it took to complete this frame
@@ -254,10 +249,7 @@ public final class Core
 			// NO CODE BELOW THIS LINE
 		}
 
-		if (!corePaused)
-		{
-			instance.gameWindow.close();
-		}
+		instance.gameWindow.close(); // TODO Handle Core break down inside function
 	}
 	
 	/**

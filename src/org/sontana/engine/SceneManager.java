@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.minueto.MinuetoFileException;
+import org.sontana.Behaviour;
 import org.sontana.Scene;
+import org.sontana.tools.Console;
 
 /**
  * <code>SceneManager</code> handles the switching, loading, and referencing of <code>Scene</code>s.
@@ -71,10 +73,23 @@ public class SceneManager
 					", scene already exists under different key.");
 		}
 		
-		/*
-		 * NOTE
-		 * Might not be able to this unless we initialise it first.
-		 */
+		Console.suppressLogs(true);
+		
+		try
+		{
+			//pScene.initialiseScene();
+			
+			Console.suppressLogs(false);
+			
+			//List<Behaviour> behaviours = pScene.getPawns();
+		}
+		catch (Exception e)
+		{			
+			Console.logError("Failed to validate Scene " + pScene.getName());
+			
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -93,11 +108,11 @@ public class SceneManager
 	/**
 	 * Load a <code>Scene</code> of a given name into memory.
 	 * @param pSceneName the <code>Scene</code>'s name.
-	 * @throws SceneManagerException if scene does not exist.
+	 * @throws SceneManagerException if <code>Scene</code> does not exist.
 	 */
 	public static void loadScene(String pSceneName) throws SceneManagerException // TODO Add overloaded function that takes Scene input?
 	{		
-		Core.Stop();
+		//Core.Stop();
 		
 		if(!scenes.containsKey(pSceneName))
 		{
@@ -127,7 +142,7 @@ public class SceneManager
 		
 		Core.sceneChange();
 		
-		Core.Continue();
+		//Core.Continue();
 	}
 	
 	/**
@@ -146,6 +161,8 @@ public class SceneManager
 	private static void unloadScene(Scene pScene)
 	{
 		// TODO Optimise garbage collection for faster load speed
+		
+		// Remove all pawns and behaviours
 		
 		InputManager.flush();
 	}

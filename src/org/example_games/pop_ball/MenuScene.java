@@ -13,7 +13,7 @@ public class MenuScene extends Scene
 	}
 
 	@Override
-	public void initialiseScene()
+	public void initialise()
 	{
 		/*
 		 * I explain most of the inner Scene workings inside MainScene, go check it out!
