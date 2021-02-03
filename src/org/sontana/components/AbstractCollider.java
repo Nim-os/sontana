@@ -9,7 +9,7 @@ import org.sontana.tools.Console;
  * @author Christophe Simon
  *
  */
-public abstract class Collider // Rename to AbstractCollider or BaseCollider?
+public abstract class AbstractCollider
 {
 	/**
 	 * Pawn to 'Hook' onto for updating the Position.
@@ -31,7 +31,7 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 	private boolean isDrawing = false;
 	
 	
-	protected Collider(Debug pDebug, Position pOrigin)
+	protected AbstractCollider(Debug pDebug, Position pOrigin)
 	{
 		debug = pDebug;
 		
@@ -39,7 +39,7 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 	}
 	
 	/**
-	 * Tests if a point intersects with this <code>Collider</code>.
+	 * Tests if a point intersects with this <code>AbstractCollider</code>.
 	 * @param pPoint the point as a <code>Position</code>.
 	 * @return if the point intersects.
 	 */
@@ -65,9 +65,9 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 	
 	
 	/**
-	 * Command helper method that gets the point closest to the <code>Collider</code>.
+	 * Command helper method that gets the point closest to the <code>AbstractCollider</code>.
 	 * @param pPoint the point as a <code>Position</code>.
-	 * @return the closest point to the <code>Collider</code>.
+	 * @return the closest point to the <code>AbstractCollider</code>.
 	 */
 	protected final Position getClosestPoint(Position pPoint)
 	{
@@ -91,17 +91,17 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 	
 	
 	/**
-	 * Tests if this <code>Collider</code> intersects with another <code>Collider</code>. 
-	 * @param pCollider the other <code>Collider</code>.
-	 * @return if the <code>Collider</code> intersects.
+	 * Tests if this <code>AbstractCollider</code> intersects with another <code>AbstractCollider</code>. 
+	 * @param pCollider the other <code>AbstractCollider</code>.
+	 * @return if the <code>AbstractCollider</code> intersects.
 	 */
-	public final boolean testCollider(Collider pCollider)
+	public final boolean testCollider(AbstractCollider pCollider)
 	{
-		return testPoint(pCollider.getClosestPoint(origin));
+		return testPoint(pCollider.getClosestPoint(origin)); // TODO Probably incorrect, need to look into
 	}
 	
 	/**
-	 * Draws a Debug image to visually represent the area of the the <code>Collider</code>.
+	 * Draws a Debug image to visually represent the area of the the <code>AbstractCollider</code>.
 	 */
 	public final void draw()
 	{
@@ -127,8 +127,8 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 	
 	/**
 	 * Not meant to be used outside of sontana, necessary to be public due to package limitations.
-	 * Used to keep the position of the <code>Collider</code> updated as well as add the Debug image as a component.
-	 * @param pHook the <code>Pawn</code> to hook the <code>Collider</code>
+	 * Used to keep the position of the <code>AbstractCollider</code> updated as well as add the Debug image as a component.
+	 * @param pHook the <code>Pawn</code> to hook the <code>AbstractCollider</code>
 	 */
 	public final void setHook(Pawn pHook)
 	{
@@ -146,7 +146,7 @@ public abstract class Collider // Rename to AbstractCollider or BaseCollider?
 }
 
 /**
- * Debug <code>DrawComponent</code> used to display <code>Collider</code>s.
+ * Debug <code>DrawComponent</code> used to display <code>AbstractCollider</code> objects.
  * @author Christophe Simon
  *
  */
