@@ -1,6 +1,7 @@
 package org.sontana;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.minueto.image.MinuetoImage;
@@ -16,6 +17,25 @@ import org.sontana.tools.Console;
  */
 public class Pawn extends Behaviour
 {	
+	
+	/**
+	 * Concrete <code>Comparator</code> that returns the 'closer' <code>Pawn</code>.
+	 */
+	public static final Comparator<Pawn> BY_SORT_POSITION_COMPARATOR =
+			(pawnA, pawnB) -> 
+	{
+		/*
+		 * Pawns with a higher sorting position will be rendered first
+		 */
+		if(pawnA.getSortPosition() > pawnB.getSortPosition())
+		{
+			return -1;
+		}
+		
+		return 1;
+	};
+	
+	
 	/**
 	 * Layer of the <code>Pawn</code>.
 	 */
