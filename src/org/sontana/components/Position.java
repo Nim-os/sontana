@@ -14,8 +14,8 @@ public class Position
 	
 	/**
 	 * Initialise a <code>Position</code> using coordinates.
-	 * @param pX the x coordinate.
-	 * @param pY the y coordinate.
+	 * @param pX the X coordinate.
+	 * @param pY the Y coordinate.
 	 */
 	public Position(float pX, float pY)
 	{
@@ -34,7 +34,7 @@ public class Position
 	}
 	
 	/**
-	 * Get the <code>Position</code>'s X coordinate.
+	 * Get the <code>Position</code> object's X coordinate.
 	 * @return the X coordinate.
 	 */
 	public float getX()
@@ -43,7 +43,7 @@ public class Position
 	}
 	
 	/**
-	 * Set the <code>Position</code>'s X coordinate.
+	 * Set the <code>Position</code> object's X coordinate.
 	 * @param pX the new X position.
 	 */
 	public void setX(float pX)
@@ -52,7 +52,7 @@ public class Position
 	}
 	
 	/**
-	 * Get the <code>Position</code>'s Y coordinate.
+	 * Get the <code>Position</code> object's Y coordinate.
 	 * @return the Y coordinate.
 	 */
 	public float getY()
@@ -61,7 +61,7 @@ public class Position
 	}
 
 	/**
-	 * Set the <code>Position</code>'s Y coordinate.
+	 * Set the <code>Position</code> object's Y coordinate.
 	 * @param pY the new Y position.
 	 */
 	public void setY(float pY)
@@ -70,7 +70,7 @@ public class Position
 	}
 	
 	/**
-	 * Set the <code>Position</code>'s X and Y coordinates.
+	 * Set the <code>Position</code> object's X and Y coordinates.
 	 * @param pX the new X coordinate.
 	 * @param pY the new Y coordinate.
 	 */
@@ -81,8 +81,8 @@ public class Position
 	}
 	
 	/**
-	 * 
-	 * @param pPosition
+	 * Sets the <code>Position</code> objects X and Y coordinates using another <code>Position</code>.
+	 * @param pPosition the <code>Position</code> to set this object with.
 	 */
 	public void set(Position pPosition)
 	{
@@ -124,7 +124,7 @@ public class Position
 	
 	
 	/**
-	 * Get the distance between two <code>Position</code>s.
+	 * Get the distance between two <code>Position</code> objects.
 	 * @param a the first <code>Position</code>.
 	 * @param b the second <code>Position</code>.
 	 * @return the distance between a and b.
@@ -177,7 +177,7 @@ public class Position
 	}
 	
 	/**
-	 * Add two <code>Position</code>s together.
+	 * Add two <code>Position</code> objects together.
 	 * @param pFirst the first <code>Position</code>.
 	 * @param pSecond the second <code>Position</code>.
 	 * @return the new <code>Position</code>.
@@ -193,7 +193,7 @@ public class Position
 	}
 	
 	/**
-	 * Subtract two <code>Position</code>s.
+	 * Subtract two <code>Position</code> objects.
 	 * @param pFirst the first <code>Position</code>.
 	 * @param pSecond the second <code>Position</code>.
 	 * @return the new <code>Position</code>.

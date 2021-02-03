@@ -63,7 +63,7 @@ public abstract class AbstractScene
 	
 	
 	/**
-	 * Get the name of a <code>AbstractScene</code>.
+	 * Get the name of an <code>AbstractScene</code>.
 	 * @return the name.
 	 */
 	public final String getName()
@@ -72,7 +72,7 @@ public abstract class AbstractScene
 	}
 	
 	/**
-	 * Get the background colour of a <code>AbstractScene</code>.
+	 * Get the background colour of an <code>AbstractScene</code>.
 	 * @return the background colour.
 	 */
 	public final MinuetoColor getBackgroundColour()
@@ -81,7 +81,7 @@ public abstract class AbstractScene
 	}
 	
 	/**
-	 * Get the background image of a <code>AbstractScene</code>.
+	 * Get the background image of an <code>AbstractScene</code>.
 	 * @return the background image.
 	 */
 	public final MinuetoImage getBackgroundImage()
@@ -91,8 +91,8 @@ public abstract class AbstractScene
 	
 
 	/**
-	 * Command method for when a <code>AbstractScene</code> is initialising. Do not call this method normally.
-	 * @throws MinuetoFileException 
+	 * Command method for when an <code>AbstractScene</code> is initialising. Do not call this method normally.
+	 * @throws MinuetoFileException if broken file paths exist within the scene.
 	 */
 	public final void initialiseScene() throws MinuetoFileException
 	{
@@ -103,8 +103,8 @@ public abstract class AbstractScene
 	}
 	
 	/**
-	 * Code that is run when a <code>AbstractScene</code> is first loaded.
-	 * @throws MinuetoFileException 
+	 * Code that is run when an <code>AbstractScene</code> is first loaded.
+	 * @throws MinuetoFileException if broken file paths exist within the scene.
 	 */
 	protected abstract void initialise() throws MinuetoFileException;
 
@@ -150,7 +150,7 @@ public abstract class AbstractScene
 	}
 	
 	/**
-	 * Get a <code>AbstractScene</code> object's <code>Behaviour</code> by name.
+	 * Get an <code>AbstractScene</code> object's <code>Behaviour</code> by name.
 	 * @param pName the <code>Behaviour</code> object's name.
 	 * @return the <code>Behaviour</code>.
 	 */

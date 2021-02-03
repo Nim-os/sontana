@@ -4,7 +4,7 @@ import org.sontana.engine.SceneManager;
 import org.sontana.tools.Console;
 
 /**
- * The <code>Behaviour</code> class is what objects in a <code>Scene</code> derive from.
+ * The <code>Behaviour</code> class is what objects in an <code>AbstractScene</code> derive from.
  * <p>
  * Don't create a child of this class. Instead, use <code>Pawn</code>, <code>Actor</code>, or <code>GameSystem</code>.
  * @author Christophe Simon
@@ -107,7 +107,7 @@ public class Behaviour
 	 */
 	
 	/**
-	 * Instantiate a <code>Behaviour</code> by adding it to the current active <code>Scene</code>.
+	 * Instantiate a <code>Behaviour</code> by adding it to the current active <code>AbstractScene</code>.
 	 * @param pBehaviours the behaviours to be added.
 	 */
 	public static final void instantiate(Behaviour ... pBehaviours)
@@ -128,6 +128,7 @@ public class Behaviour
 			}
 			
 			b.initialise(); // Maybe move into onSceneChange within the Core?
+			// Only problem is that it won't get called then if object is created in the middle of the game
 		}
 	}
 	

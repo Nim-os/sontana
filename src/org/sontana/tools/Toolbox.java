@@ -1,5 +1,10 @@
 package org.sontana.tools;
 
+/**
+ * The <code>Toolbox</code> class contains various methods that perform common functions.
+ * @author Christophe Simon
+ *
+ */
 public class Toolbox
 {
 	

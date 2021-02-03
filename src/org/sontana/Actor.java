@@ -3,27 +3,26 @@ package org.sontana;
 import org.minueto.handlers.MinuetoKeyboardHandler;
 import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.image.MinuetoImage;
-import org.sontana.components.Collider;
-import org.sontana.components.Position;
+import org.sontana.components.AbstractCollider;
 import org.sontana.engine.InputManager;
 import org.sontana.tools.Console;
 import org.sontana.tools.CursorPosition;
 
 /**
- * <code>Actor</code>s are objects in a <code>Scene</code> that are rendered and react to input.
+ * <code>Actor</code> objects are objects in an <code>AbstractScene</code> that are rendered and react to input.
  * @author Christophe Simon
  *
  */
 public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardHandler
 {
-	protected Collider collider;
+	protected AbstractCollider collider;
 	
-	protected Actor(String actorName, MinuetoImage actorSprite, Collider actorCollider, boolean startEnabled)
+	protected Actor(String actorName, MinuetoImage actorSprite, AbstractCollider actorCollider, boolean startEnabled)
 	{
 		this(actorName, "", actorSprite, actorCollider, startEnabled);
 	}
 	
-	protected Actor(String actorName, String actorTag, MinuetoImage actorSprite, Collider actorCollider, boolean startEnabled)
+	protected Actor(String actorName, String actorTag, MinuetoImage actorSprite, AbstractCollider actorCollider, boolean startEnabled)
 	{
 		super(actorName, actorTag, actorSprite, startEnabled);
 		
@@ -40,10 +39,10 @@ public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardH
 	}
 	
 	/**
-	 * Get the <code>Collider</code> for this <code>Actor</code>.
-	 * @return the <code>Collider</code>.
+	 * Get the <code>AbstractCollider</code> for this <code>Actor</code>.
+	 * @return the <code>AbstractCollider</code>.
 	 */
-	public final Collider getCollider()
+	public final AbstractCollider getCollider()
 	{
 		return collider;
 	}

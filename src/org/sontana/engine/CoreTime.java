@@ -1,7 +1,7 @@
 package org.sontana.engine;
 
 /**
- * The <code>Time</code> class represents the details of the <code>Core</code>'s CPU time.
+ * The <code>Time</code> class represents the details of the <code>Core</code> object's CPU time.
  * <p>
  * This is NOT the same as MinuetoStopWatch and is not intended to be used outside of the <code>Core</code>.
  * @author Christophe Simon

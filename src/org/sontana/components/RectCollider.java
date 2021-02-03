@@ -5,7 +5,12 @@ import org.minueto.MinuetoColor;
 import org.minueto.image.MinuetoRectangle;
 import org.sontana.tools.Toolbox;
 
-public class RectCollider extends Collider
+/**
+ * <code>RectCollider</code> objects represent <code>AbstractCollider</code> objects with a rectangular shape.
+ * @author Christophe Simon
+ *
+ */
+public class RectCollider extends AbstractCollider
 {
 	private Position offset;
 	
@@ -40,12 +45,7 @@ public class RectCollider extends Collider
 
 	@Override
 	protected Position getPointClosestToPoint(Position pPoint)
-	{
-		if(testPointIntersection(pPoint)) // Potentially unnecessary
-		{
-			return pPoint;
-		}
-		
+	{		
 		float pointX, pointY;
 		
 		pointX = Toolbox.clamp(pPoint.getX(), origin.getX(), offset.getY());

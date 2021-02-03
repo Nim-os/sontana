@@ -1,7 +1,6 @@
 package org.sontana.engine;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -42,10 +41,10 @@ public final class Core
 	
 	/**
 	 * Run the <code>Core</code> with pScenes.
-	 * @param pScenes the game's <code>Scene</code>s.
+	 * @param pScenes the game's <code>AbstractScene</code> objects.
 	 * @throws SceneManagerException if a scene already exists.
 	 */
-	public static void Run(List<Scene> pScenes) throws SceneManagerException
+	public static void Run(List<AbstractScene> pScenes) throws SceneManagerException
 	{		
 		assert pScenes != null && !pScenes.isEmpty();
 		
@@ -102,7 +101,7 @@ public final class Core
 	
 	
 	/**
-	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>Scene</code> changes.
+	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>AbstractScene</code> changes.
 	 * Changes scenes at the end of the current frame.
 	 */
 	static void sceneChange()
@@ -244,7 +243,7 @@ public final class Core
 	}
 	
 	/**
-	 * Executes the logic of <code>GameSystem</code>s and <code>Pawn</code>s in a <code>Scene</code>.
+	 * Executes the logic of <code>GameSystem</code> objects and <code>Pawn</code> objects in an <code>AbstractScene</code>.
 	 */
 	private void executeLogic()
 	{
@@ -299,7 +298,7 @@ public final class Core
 	}
 	
 	/**
-	 * Renders the <code>Pawn</code>s in a <code>Scene</code>.
+	 * Renders the <code>Pawn</code> objects in an <code>AbstractScene</code>.
 	 */
 	private void executeRendering()
 	{

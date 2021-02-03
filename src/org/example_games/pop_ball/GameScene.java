@@ -2,9 +2,9 @@ package org.example_games.pop_ball;
 
 
 import org.sontana.Behaviour;
-import org.sontana.Scene;
+import org.sontana.AbstractScene;
 
-public class GameScene extends Scene
+public class GameScene extends AbstractScene
 {
 
 	public GameScene()

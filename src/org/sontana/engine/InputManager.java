@@ -3,11 +3,15 @@ package org.sontana.engine;
 import java.util.ArrayList;
 
 import org.minueto.MinuetoEventQueue;
-import org.minueto.handlers.MinuetoKeyboardHandler;
-import org.minueto.handlers.MinuetoMouseHandler;
 import org.minueto.window.MinuetoWindow;
 import org.sontana.Actor;
 
+/**
+ * The <code>InputManager</code> class manages the inputs for <code>Actor</code> objects.<br>
+ * This class should not be interacted with normally.
+ * @author Christophe Simon
+ *
+ */
 public class InputManager
 {
 	private static final ArrayList<Actor> waitingQueueMouse = new ArrayList<>();

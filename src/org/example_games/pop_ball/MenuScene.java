@@ -2,9 +2,9 @@ package org.example_games.pop_ball;
 
 import org.minueto.MinuetoColor;
 import org.sontana.Behaviour;
-import org.sontana.Scene;
+import org.sontana.AbstractScene;
 
-public class MenuScene extends Scene
+public class MenuScene extends AbstractScene
 {
 
 	public MenuScene()

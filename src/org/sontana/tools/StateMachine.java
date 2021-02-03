@@ -2,6 +2,11 @@ package org.sontana.tools;
 
 import java.util.HashMap;
 
+/**
+ * <code>StateMachine</code> objects represent different states and are globally accessible.
+ * @author Christophe Simon
+ *
+ */
 public class StateMachine
 {
 

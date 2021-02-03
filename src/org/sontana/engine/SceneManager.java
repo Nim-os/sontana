@@ -10,7 +10,7 @@ import org.sontana.*;
 import org.sontana.tools.Console;
 
 /**
- * <code>SceneManager</code> handles the switching, loading, and referencing of <code>Scene</code>s.
+ * <code>SceneManager</code> handles the switching, loading, and referencing of <code>AbstractScene</code> objects.
  * @author Christophe Simon
  *
  */
@@ -19,34 +19,34 @@ public class SceneManager
 	/*
 	 * FLYWEIGHT design to prevent duplicate scenes and ambiguity.
 	 */
-	private static HashMap<String, Scene> scenes = new HashMap<>();
+	private static HashMap<String, AbstractScene> scenes = new HashMap<>();
 	
-	private static Scene activeScene;
+	private static AbstractScene activeScene;
 	
 	
 	private SceneManager(){}
 	
 	
 	/**
-	 * Add multiple <code>Scene</code>s to the <code>SceneManager</code>.
-	 * @param pScenes the <code>List</code> of <code>Scene</code>s.
+	 * Add multiple <code>AbstractScene</code> objects to the <code>SceneManager</code>.
+	 * @param pScenes the <code>List</code> of <code>AbstractScene</code> objects.
 	 * @throws SceneManagerException if scene already exists.
 	 */
-	public static void addScenes(List<Scene> pScenes) throws SceneManagerException
+	public static void addScenes(List<AbstractScene> pScenes) throws SceneManagerException
 	{
 		
-		for(Scene sc : pScenes)
+		for(AbstractScene sc : pScenes)
 		{
 			addScene(sc);
 		}
 	}
 	
 	/**
-	 * Add a <code>Scene</code> to the <code>SceneManager</code>.
-	 * @param pScene the <code>Scene</code>.
+	 * Add an <code>AbstractScene</code> to the <code>SceneManager</code>.
+	 * @param pScene the <code>AbstractScene</code>.
 	 * @throws SceneManagerException if scene already exists.
 	 */
-	public static void addScene(Scene pScene) throws SceneManagerException
+	public static void addScene(AbstractScene pScene) throws SceneManagerException
 	{
 		validateScene(pScene);
 		
@@ -55,10 +55,10 @@ public class SceneManager
 	}
 	
 	/**
-	 * Validate a <code>Scene</code> to check for inconsistencies.
-	 * @param pScene the <code>Scene</code>.
+	 * Validate an <code>AbstractScene</code> to check for inconsistencies.
+	 * @param pScene the <code>AbstractScene</code>.
 	 */
-	private static void validateScene(Scene pScene) throws SceneManagerException
+	private static void validateScene(AbstractScene pScene) throws SceneManagerException
 	{
 		
 		if(scenes.containsKey(pScene.getName())) // Key already exists in Map
@@ -130,22 +130,22 @@ public class SceneManager
 	}
 	
 	/**
-	 * Get a <code>Scene</code> from its name.
-	 * @param pName the <code>Scene</code> name.
-	 * @return the <code>Scene</code>.
+	 * Get an <code>AbstractScene</code> from its name.
+	 * @param pName the <code>AbstractScene</code> name.
+	 * @return the <code>AbstractScene</code>.
 	 */
-	public static Scene getScene(String pName)
+	public static AbstractScene getScene(String pName)
 	{
-		Scene scene = scenes.get(pName);
+		AbstractScene scene = scenes.get(pName);
 		
 		return scene;
 	}
 	
 	
 	/**
-	 * Load a <code>Scene</code> of a given name into memory.
-	 * @param pSceneName the <code>Scene</code>'s name.
-	 * @throws SceneManagerException if <code>Scene</code> does not exist.
+	 * Load an <code>AbstractScene</code> of a given name into memory.
+	 * @param pSceneName the <code>AbstractScene</code> object's name.
+	 * @throws SceneManagerException if <code>AbstractScene</code> does not exist.
 	 */
 	public static void loadScene(String pSceneName) throws SceneManagerException // TODO Add overloaded function that takes Scene input?
 	{		
@@ -183,8 +183,8 @@ public class SceneManager
 	}
 	
 	/**
-	 * Reload the current active <code>Scene</code>.
-	 * @throws SceneManagerException 
+	 * Reload the current active <code>AbstractScene</code>.
+	 * @throws SceneManagerException if a scene does not exist or is null.
 	 */
 	public static void reloadScene() throws SceneManagerException
 	{
@@ -192,10 +192,10 @@ public class SceneManager
 	}
 	
 	/**
-	 * Unload a <code>Scene</code> from memory.
+	 * Unload an <code>AbstractScene</code> from memory.
 	 * @param pScene the scene.
 	 */
-	private static void unloadScene(Scene pScene)
+	private static void unloadScene(AbstractScene pScene)
 	{
 		// TODO Optimise garbage collection for faster load speed
 		
@@ -205,19 +205,19 @@ public class SceneManager
 	}
 	
 	/**
-	 * Get the current active <code>Scene</code>.
-	 * @return the active <code>Scene</code>.
+	 * Get the current active <code>AbstractScene</code>.
+	 * @return the active <code>AbstractScene</code>.
 	 */
-	public static Scene getActiveScene()
+	public static AbstractScene getActiveScene()
 	{
 		return activeScene;
 	}
 	
 	/**
-	 * Get a <code>Collection</code> of the <code>Scene</code>s.
-	 * @return the <code>Collection</code> of <code>Scene</code>s.
+	 * Get a <code>Collection</code> of the <code>AbstractScene</code> objects.
+	 * @return the <code>Collection</code> of <code>AbstractScene</code> objects.
 	 */
-	public static Collection<Scene> getScenes()
+	public static Collection<AbstractScene> getScenes()
 	{
 		return Collections.unmodifiableCollection(scenes.values());
 	}

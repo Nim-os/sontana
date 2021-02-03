@@ -13,8 +13,8 @@ public class CursorPosition extends Position
 
 	/**
 	 * Initialise a <code>CursorPosition</code> using coordinates.
-	 * @param pX the x coordinate.
-	 * @param pY the y coordinate.
+	 * @param pX the X coordinate.
+	 * @param pY the Y coordinate.
 	 */
 	public CursorPosition(float pX, float pY)
 	{

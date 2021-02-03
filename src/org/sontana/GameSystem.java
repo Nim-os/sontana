@@ -1,7 +1,7 @@
 package org.sontana;
 
 /**
- * <code>GameSystem</code>s are objects in a <code>Scene</code> that are not rendered.
+ * <code>GameSystem</code> objects are objects in an <code>AbstractScene</code> that are not rendered.
  * @author Christophe Simon
  *
  */

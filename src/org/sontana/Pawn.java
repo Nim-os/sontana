@@ -5,13 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.minueto.image.MinuetoImage;
-import org.sontana.components.Component;
-import org.sontana.components.Layer;
-import org.sontana.components.Position;
+import org.sontana.components.*;
 import org.sontana.tools.Console;
 
 /**
- * <code>Pawn</code>s are objects in a <code>Scene</code> that are rendered.
+ * <code>Pawn</code> objects are objects in an <code>AbstractScene</code> that are rendered.
  * @author Christophe Simon
  *
  */
@@ -34,12 +32,6 @@ public class Pawn extends Behaviour
 		
 		return 1;
 	};
-	
-	
-	/**
-	 * Layer of the <code>Pawn</code>.
-	 */
-	protected Layer layer; // TODO Needed?
 	
 	/**
 	 * <code>MinuetoImage</code> of the <code>Pawn</code>.
@@ -75,8 +67,6 @@ public class Pawn extends Behaviour
 		sprite = pawnSprite;
 		
 		
-		layer = new Layer();
-		
 		position = new Position(0,0);
 		
 		components = new ArrayList<>();
@@ -97,16 +87,7 @@ public class Pawn extends Behaviour
 	
 	
 	/**
-	 * Gets the <code>Pawn</code>'s <code>Layer</code>.
-	 * @return the <code>Layer</code>.
-	 */
-	public final Layer getLayer()
-	{
-		return layer;
-	}
-	
-	/**
-	 * Gets the <code>Pawn</code>'s sprite.
+	 * Gets the <code>Pawn</code> object's sprite.
 	 * @return the sprite as <code>MinuetoImage</code>.
 	 */
 	public final MinuetoImage getSprite()
@@ -115,7 +96,7 @@ public class Pawn extends Behaviour
 	}
 	
 	/**
-	 * Gets the <code>Pawn</code>'s <code>Position</code>.
+	 * Gets the <code>Pawn</code> object's <code>Position</code>.
 	 * @return the <code>Position</code>.
 	 */
 	public final Position getPosition()
@@ -124,8 +105,8 @@ public class Pawn extends Behaviour
 	}
 	
 	/**
-	 * Gets the <code>Pawn</code>'s <code>Component</code>s.
-	 * @return a <code>List</code> of <code>Component</code>s.
+	 * Gets the <code>Pawn</code> object's <code>Component</code> objects.
+	 * @return a <code>List</code> of <code>Component</code> objects.
 	 */
 	public final List<Component> getComponents()
 	{
@@ -133,7 +114,7 @@ public class Pawn extends Behaviour
 	}
 	
 	/**
-	 * Gets the <code>Pawn</code>'s sorting position.
+	 * Gets the <code>Pawn</code> object's sorting position.
 	 * @return the sorting position.
 	 */
 	public final int getSortPosition()
@@ -142,7 +123,7 @@ public class Pawn extends Behaviour
 	}
 	
 	/**
-	 * Set the <code>Pawn</code>'s sorting position.
+	 * Set the <code>Pawn</code> object's sorting position.
 	 * @param newSortPosition the sorting position.
 	 */
 	protected final void setSortPosition(int newSortPosition)

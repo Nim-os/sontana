@@ -5,7 +5,7 @@ import org.sontana.Pawn;
 import org.sontana.tools.Console;
 
 /**
- * TODO
+ * <code>AbstractCollider</code> objects represent shapes that can be used to test interactions.
  * @author Christophe Simon
  *
  */

@@ -3,7 +3,7 @@ package org.example_games.pop_ball;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sontana.Scene;
+import org.sontana.AbstractScene;
 import org.sontana.engine.Core;
 import org.sontana.engine.SceneManagerException;
 
@@ -11,7 +11,7 @@ public class PopBall
 {
 	public static void main(String[] args)
 	{
-		List<Scene> scenes = new ArrayList<Scene>();
+		List<AbstractScene> scenes = new ArrayList<AbstractScene>();
 
 		/*
 		 * We need to add all our Scenes to the game here!
