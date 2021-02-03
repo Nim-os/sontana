@@ -9,11 +9,11 @@ import org.minueto.MinuetoFileException;
 import org.minueto.image.MinuetoImage;
 
 /**
- * The <code>Scene</code> class represents different game stages.
+ * <code>AbstractScene</code> objects represents different game stages.
  * @author Christophe Simon
  *
  */
-public abstract class Scene
+public abstract class AbstractScene
 {
 	private String sceneName;
 	private MinuetoColor sceneColour = MinuetoColor.WHITE;
@@ -24,31 +24,31 @@ public abstract class Scene
 	
 	
 	/**
-	 * Create a new <code>Scene</code>.
-	 * @param pSceneName the <code>Scene</code> name.
+	 * Create a new <code>AbstractScene</code>.
+	 * @param pSceneName the <code>AbstractScene</code> name.
 	 */
-	public Scene(String pSceneName)
+	public AbstractScene(String pSceneName)
 	{		
 		this(pSceneName, MinuetoColor.WHITE, null);
 	}
 	
 	/**
-	 * Create a new <code>Scene</code>.
-	 * @param pSceneName the <code>Scene</code> name.
-	 * @param pSceneColour the <code>Scene</code> background colour.
+	 * Create a new <code>AbstractScene</code>.
+	 * @param pSceneName the <code>AbstractScene</code> name.
+	 * @param pSceneColour the <code>AbstractScene</code> background colour.
 	 */
-	public Scene(String pSceneName, MinuetoColor pSceneColour)
+	public AbstractScene(String pSceneName, MinuetoColor pSceneColour)
 	{
 		this(pSceneName, pSceneColour, null);
 	}
 	
 	/**
-	 * Create a new <code>Scene</code>.
-	 * @param pSceneName the <code>Scene</code> name.
-	 * @param pSceneColour the <code>Scene</code> background colour.
-	 * @param pSceneBackground the <code>Scene</code> background image.
+	 * Create a new <code>AbstractScene</code>.
+	 * @param pSceneName the <code>AbstractScene</code> name.
+	 * @param pSceneColour the <code>AbstractScene</code> background colour.
+	 * @param pSceneBackground the <code>AbstractScene</code> background image.
 	 */
-	public Scene(String pSceneName, MinuetoColor pSceneColour, MinuetoImage pSceneBackground)
+	public AbstractScene(String pSceneName, MinuetoColor pSceneColour, MinuetoImage pSceneBackground)
 	{
 		sceneName = pSceneName;
 		
@@ -63,7 +63,7 @@ public abstract class Scene
 	
 	
 	/**
-	 * Get the name of a <code>Scene</code>.
+	 * Get the name of a <code>AbstractScene</code>.
 	 * @return the name.
 	 */
 	public final String getName()
@@ -72,7 +72,7 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get the background colour of a <code>Scene</code>.
+	 * Get the background colour of a <code>AbstractScene</code>.
 	 * @return the background colour.
 	 */
 	public final MinuetoColor getBackgroundColour()
@@ -81,7 +81,7 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get the background image of a <code>Scene</code>.
+	 * Get the background image of a <code>AbstractScene</code>.
 	 * @return the background image.
 	 */
 	public final MinuetoImage getBackgroundImage()
@@ -91,7 +91,7 @@ public abstract class Scene
 	
 
 	/**
-	 * Command method for when a <code>Scene</code> is initialising. Do not call this method normally.
+	 * Command method for when a <code>AbstractScene</code> is initialising. Do not call this method normally.
 	 * @throws MinuetoFileException 
 	 */
 	public final void initialiseScene() throws MinuetoFileException
@@ -103,14 +103,14 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Code that is run when a <code>Scene</code> is first loaded.
+	 * Code that is run when a <code>AbstractScene</code> is first loaded.
 	 * @throws MinuetoFileException 
 	 */
 	protected abstract void initialise() throws MinuetoFileException;
 
 	
 	/**
-	 * Add a <code>GameSystem</code> to the <code>Scene</code>. Do not call this method normally.
+	 * Add a <code>GameSystem</code> to the <code>AbstractScene</code>. Do not call this method normally.
 	 * @param pSystem the <code>GameSystem</code>.
 	 */
 	final void addSystem(GameSystem pSystem)
@@ -121,8 +121,8 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get a <code>List</code> of the <code>Scene</code>'s <code>GameSystem</code>s.
-	 * @return the <code>List</code> of <code>GameSystem</code>s.
+	 * Get a <code>List</code> of the <code>AbstractScene</code> object's <code>GameSystem</code> objects.
+	 * @return the <code>List</code> of <code>GameSystem</code> objects.
 	 */
 	public final List<GameSystem> getSystems()
 	{
@@ -130,7 +130,7 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Add a <code>Pawn</code> to the <code>Scene</code>. Do not call this method normally.
+	 * Add a <code>Pawn</code> to the <code>AbstractScene</code>. Do not call this method normally.
 	 * @param pPawn the <code>Pawn</code>.
 	 */
 	final void addPawn(Pawn pPawn)
@@ -141,8 +141,8 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get a <code>List</code> of the <code>Scene</code>'s <code>Pawn</code>s.
-	 * @return the <code>List</code> of <code>Pawn</code>s.
+	 * Get a <code>List</code> of the <code>AbstractScene</code> object's <code>Pawn</code> objects.
+	 * @return the <code>List</code> of <code>Pawn</code> objects.
 	 */
 	public final List<Pawn> getPawns()
 	{
@@ -150,8 +150,8 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get a <code>Scene</code>'s <code>Behaviour</code> by name.
-	 * @param pName the <code>Behaviour</code>'s name.
+	 * Get a <code>AbstractScene</code> object's <code>Behaviour</code> by name.
+	 * @param pName the <code>Behaviour</code> object's name.
 	 * @return the <code>Behaviour</code>.
 	 */
 	public final Behaviour findBehaviourByName(String pName)
@@ -177,8 +177,8 @@ public abstract class Scene
 	}
 	
 	/**
-	 * Get a <code>List</code> of <code>Behaviour</code>s by tag.
-	 * @param pTag the <code>Behaviour</code>'s tag.
+	 * Get a <code>List</code> of <code>Behaviour</code> objects by tag.
+	 * @param pTag the <code>Behaviour</code> object's tag.
 	 * @return the <code>List</code>.
 	 */
 	public final List<Behaviour> findBehavioursByTag(String pTag)
