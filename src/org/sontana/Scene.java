@@ -61,12 +61,7 @@ public abstract class Scene
 		scenePawns = new ArrayList<>();
 	}
 	
-	/**
-	 * Code that is run when a <code>Scene</code> is first loaded.
-	 * @throws MinuetoFileException 
-	 */
-	public abstract void initialiseScene() throws MinuetoFileException;
-
+	
 	/**
 	 * Get the name of a <code>Scene</code>.
 	 * @return the name.
@@ -94,11 +89,31 @@ public abstract class Scene
 		return sceneBackground;
 	}
 	
+
+	/**
+	 * Command method for when a <code>Scene</code> is initialising. Do not call this method normally.
+	 * @throws MinuetoFileException 
+	 */
+	public final void initialiseScene() throws MinuetoFileException
+	{
+		sceneSystems.clear();
+		scenePawns.clear();
+		
+		initialise();
+	}
+	
+	/**
+	 * Code that is run when a <code>Scene</code> is first loaded.
+	 * @throws MinuetoFileException 
+	 */
+	protected abstract void initialise() throws MinuetoFileException;
+
+	
 	/**
 	 * Add a <code>GameSystem</code> to the <code>Scene</code>. Do not call this method normally.
 	 * @param pSystem the <code>GameSystem</code>.
 	 */
-	public final void addSystem(GameSystem pSystem)
+	final void addSystem(GameSystem pSystem)
 	{
 		sceneSystems.add(pSystem);
 		
@@ -118,7 +133,7 @@ public abstract class Scene
 	 * Add a <code>Pawn</code> to the <code>Scene</code>. Do not call this method normally.
 	 * @param pPawn the <code>Pawn</code>.
 	 */
-	public final void addPawn(Pawn pPawn)
+	final void addPawn(Pawn pPawn)
 	{
 		scenePawns.add(pPawn);
 		
