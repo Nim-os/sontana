@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.minueto.MinuetoFileException;
-import org.sontana.Behaviour;
-import org.sontana.Scene;
+import org.sontana.*;
 import org.sontana.tools.Console;
 
 /**
@@ -73,19 +72,57 @@ public class SceneManager
 					", scene already exists under different key.");
 		}
 		
-		Console.suppressLogs(true);
 		
 		try
 		{
-			//pScene.initialiseScene();
+			Console.suppressLogs(true);
+			
+			activeScene = pScene;
+			
+			pScene.initialiseScene();
 			
 			Console.suppressLogs(false);
 			
-			//List<Behaviour> behaviours = pScene.getPawns();
+			List<Pawn> pawns = pScene.getPawns();
+			List<GameSystem> systems = pScene.getSystems();
+			
+			for (int i = 0; i < pawns.size() + systems.size(); i++)
+			{
+				Behaviour cur;
+				
+				if (i < pawns.size())
+				{
+					cur = pawns.get(i);
+				}
+				else
+				{
+					cur = systems.get(i - pawns.size());
+				}
+				
+				for (int j = i + 1; j < pawns.size() + systems.size(); j++)
+				{
+					Behaviour compare;
+					
+					if (j < pawns.size())
+					{
+						compare = pawns.get(j);
+					}
+					else
+					{
+						compare = systems.get(j - pawns.size());
+					}
+					
+					if (cur.name.equals(compare.name))
+					{
+						Console.logWarning("Multiple behaviours named  " + cur.name + "  exist");
+						break;
+					}
+				}
+			}
 		}
 		catch (Exception e)
-		{			
-			Console.logError("Failed to validate Scene " + pScene.getName());
+		{
+			Console.logError("Failed to validate Scene " + pScene.getName() + "\n");
 			
 			e.printStackTrace();
 		}
