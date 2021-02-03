@@ -3,7 +3,8 @@ package org.sontana.engine;
 import org.sontana.components.Position;
 
 /**
- * <code>Camera</code> acts as a pseudo-camera that defines where the origin of a frame is.
+ * <code>Camera</code> acts as a pseudo-camera that defines where the origin of a frame is.<br>
+ * Origin rests at the bottom-left of the screen.
  * @author Christophe Simon
  *
  */
@@ -14,7 +15,7 @@ public class Camera
 	private Camera() {}
 	
 	/**
-	 * Shorthand for <code>setPosition(new Position(0,0))</code>.
+	 * Shorthand for <code>setPosition(Position.ZERO)</code>.
 	 */
 	public static void resetPosition()
 	{
@@ -32,7 +33,7 @@ public class Camera
 	
 	/**
 	 * Gets the <code>Position</code> of the <code>Camera</code>.
-	 * @return
+	 * @return the <code>Position</code>.
 	 */
 	public static Position getPosition()
 	{

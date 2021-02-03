@@ -103,6 +103,7 @@ public final class Core
 	
 	/**
 	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>Scene</code> changes.
+	 * Changes scenes at the end of the current frame.
 	 */
 	static void sceneChange()
 	{
@@ -203,21 +204,11 @@ public final class Core
 			 */
 			InputManager.executeInput();
 			
-			if(!coreRunning || corePaused || sceneChange)
-			{
-				continue;
-			}
-			
 			
 			/*
 			 * Handles Behaviour logic
 			 */
 			executeLogic();
-			
-			if(!coreRunning || corePaused || sceneChange)
-			{
-				continue;
-			}
 			
 			
 			/*

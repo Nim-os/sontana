@@ -7,6 +7,7 @@ import org.sontana.components.Collider;
 import org.sontana.components.Position;
 import org.sontana.engine.InputManager;
 import org.sontana.tools.Console;
+import org.sontana.tools.CursorPosition;
 
 /**
  * <code>Actor</code>s are objects in a <code>Scene</code> that are rendered and react to input.
@@ -96,21 +97,21 @@ public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardH
 	
 	protected void onKeyType(char key) {}
 	
-	protected void onMousePress(Position pos, int button) {}
+	protected void onMousePress(CursorPosition pos, int button) {}
 	
-	protected void onMouseRelease(Position pos, int button) {}
+	protected void onMouseRelease(CursorPosition pos, int button) {}
 	
-	protected void onMouseMove(Position pos) {}
+	protected void onMouseMove(CursorPosition pos) {}
 	
 	/*
 	 * Checked input checks intersection with the Collider first.
 	 */
 	
-	protected void onMousePressChecked(Position pos, int button) {}
+	protected void onMousePressChecked(CursorPosition pos, int button) {}
 	
-	protected void onMouseReleaseChecked(Position pos, int button) {}
+	protected void onMouseReleaseChecked(CursorPosition pos, int button) {}
 	
-	protected void onMouseMoveChecked(Position pos) {}
+	protected void onMouseMoveChecked(CursorPosition pos) {}
 	
 	
 	
@@ -153,7 +154,7 @@ public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardH
 	{
 		if(isEnabled())
 		{
-			Position mousePos = new Position(x, y);
+			CursorPosition mousePos = new CursorPosition(x, y);
 			
 			onMousePress(mousePos, button);
 			
@@ -170,7 +171,7 @@ public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardH
 	{
 		if(isEnabled())
 		{
-			Position mousePos = new Position(x, y);
+			CursorPosition mousePos = new CursorPosition(x, y);
 			
 			onMouseRelease(mousePos, button);
 			
@@ -187,7 +188,7 @@ public class Actor extends Pawn implements MinuetoMouseHandler, MinuetoKeyboardH
 	{
 		if(isEnabled())
 		{
-			Position mousePos = new Position(x, y);
+			CursorPosition mousePos = new CursorPosition(x, y);
 			
 			onMouseMove(mousePos);
 			

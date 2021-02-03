@@ -12,6 +12,7 @@ import org.sontana.components.RectCollider;
 import org.sontana.engine.Core;
 import org.sontana.engine.SceneManager;
 import org.sontana.engine.SceneManagerException;
+import org.sontana.tools.CursorPosition;
 
 /*
  * You can safely ignore this class for now, it is just a simple class that brings us to the next scene when clicked!
@@ -47,7 +48,7 @@ public class PlayButtonUI extends UIActor
 	}
 	
 	@Override
-	protected void onMousePressChecked(Position mousePos, int button)
+	protected void onMousePressChecked(CursorPosition mousePos, int button)
 	{
 		if(button == MinuetoMouse.MOUSE_BUTTON_LEFT)
 		{

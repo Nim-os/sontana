@@ -127,7 +127,7 @@ public class Behaviour
 				Console.logWarning("Behaviour " + b.name + " not a subtype of Pawn or GameSystem.");
 			}
 			
-			b.initialise();
+			b.initialise(); // Maybe move into onSceneChange within the Core?
 		}
 	}
 	

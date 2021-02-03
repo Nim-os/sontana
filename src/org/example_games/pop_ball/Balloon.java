@@ -9,6 +9,7 @@ import org.sontana.components.Position;
 import org.sontana.components.RectCollider;
 import org.sontana.engine.Core;
 import org.sontana.engine.SceneManager;
+import org.sontana.tools.CursorPosition;
 
 /**
  * This is an example class of an Actor in a Scene which reacts to input.
@@ -99,7 +100,7 @@ public class Balloon extends Actor
 
 	
 	@Override
-	public void onMousePressChecked(Position pPos, int button)
+	public void onMousePressChecked(CursorPosition pPos, int button)
 	{
 		/*
 		 * Again, this input thing isn't necessary to understand right now.
