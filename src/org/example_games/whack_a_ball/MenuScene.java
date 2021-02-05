@@ -23,8 +23,8 @@ public class MenuScene extends AbstractScene
 		 */
 		
 		Behaviour.instantiate(
-				new MenuButtonUI("ButtonA", new Position(0, Core.windowHeight/2)),
-				new MenuButtonUI("ButtonB", new Position(Core.windowWidth, Core.windowHeight/2))
+				new MenuButtonUI("ButtonA", new Position(0, Core.windowHeight / 5 * 2)),
+				new MenuButtonUI("ButtonB", new Position(Core.windowWidth, Core.windowHeight / 5 * 2))
 				);
 	}
 

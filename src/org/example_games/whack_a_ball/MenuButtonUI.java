@@ -2,11 +2,9 @@ package org.example_games.whack_a_ball;
 
 import org.minueto.MinuetoColor;
 import org.minueto.image.MinuetoFont;
-import org.minueto.image.MinuetoImage;
 import org.minueto.image.MinuetoRectangle;
 import org.minueto.image.MinuetoText;
 import org.sontana.UIActor;
-import org.sontana.components.AbstractCollider;
 import org.sontana.components.DrawComponent;
 import org.sontana.components.Position;
 import org.sontana.components.RectCollider;
@@ -22,8 +20,8 @@ public class MenuButtonUI extends UIActor
 	public MenuButtonUI(String pName, Position pStartingPosition)
 	{
 		super(pName, 
-				new MinuetoRectangle(120, 55, MinuetoColor.WHITE, true), 
-				new RectCollider(new Position(24,24)), 
+				new MinuetoRectangle(200, 70, MinuetoColor.WHITE, true), 
+				new RectCollider(new Position(200, 70)), 
 				true);
 		
 		position.set(pStartingPosition);
@@ -47,7 +45,7 @@ public class MenuButtonUI extends UIActor
 	{
 		position.move(speed, 0);
 		
-		if (position.getX() > Core.windowWidth * 2 + sprite.getWidth())
+		if (position.getX() > Core.windowWidth * 2 - sprite.getWidth())
 		{
 			position.setX(0 - sprite.getWidth());
 		}
