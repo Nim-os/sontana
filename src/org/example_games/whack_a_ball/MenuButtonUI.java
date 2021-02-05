@@ -26,6 +26,8 @@ public class MenuButtonUI extends UIActor
 		
 		position.set(pStartingPosition);
 		
+		setSortPosition(-1000);
+		
 		registerMouseInput();
 	}
 	
