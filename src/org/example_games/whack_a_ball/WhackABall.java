@@ -13,9 +13,9 @@ public class WhackABall
 	public static void main(String[] args)
 	{
 		List<AbstractScene> scenes = new ArrayList<AbstractScene>();
-		
-		scenes.add(new GameScene());
+
 		scenes.add(new MenuScene());
+		scenes.add(new GameScene());
 		
 		try
 		{
