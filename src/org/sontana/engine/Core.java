@@ -2,6 +2,7 @@ package org.sontana.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.TreeSet;
 
 import org.minueto.MinuetoColor;
@@ -40,7 +41,10 @@ public final class Core implements SceneObserver
 	private MinuetoColor sceneColour;
 	
 	private ArrayList<GameSystem> systems;
+	private Stack<GameSystem> waitingSystems;
+	
 	private TreeSet<Pawn> pawns;
+	private Stack<Pawn> waitingPawns;
 
 	
 	/**
@@ -72,11 +76,20 @@ public final class Core implements SceneObserver
 		
 	}
 	
+	
+	/**
+	 * Pauses the <code>Core</code>'s execution.
+	 */
 	public static void Stop()
 	{
 		corePaused = true;
 	}
 	
+	
+	/**
+	 * Continues the <code>Core</code>'s execution if it was paused.
+	 * @throws SceneManagerException
+	 */
 	public static void Continue() throws SceneManagerException
 	{
 		if(instance == null || SceneManager.getScenes().isEmpty())
@@ -93,65 +106,15 @@ public final class Core implements SceneObserver
 		corePaused = false;		
 	}
 	
-	public static void Exit()
-	{
-		coreRunning = false;
-		
-	}
-	
-	
 	
 	/**
-	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>AbstractScene</code> changes.
-	 * Changes scenes at the end of the current frame.
+	 * Kills the <code>Core</code>.
 	 */
-	static void sceneChange()
+	public static void Exit()
 	{
-		sceneChange = true;		
+		coreRunning = false;		
 	}
-	
-	private void handleSceneChange()
-	{
-		/*
-		 * Clear old Behaviours
-		 */
-		systems = new ArrayList<>();
 		
-		pawns.clear();
-		
-		
-		/*
-		 * Draw a background scene.
-		 */
-		sceneBackground = SceneManager.getActiveScene().getBackgroundImage();
-		
-		sceneColour = SceneManager.getActiveScene().getBackgroundColour();
-		
-		
-		/*
-		 * Initialise the Scene
-		 */
-		try
-		{
-			SceneManager.getActiveScene().initialiseScene();
-		} catch (MinuetoFileException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void onSystemAdded(GameSystem pSystem)
-	{
-		systems.add(pSystem);
-	}
-
-	@Override
-	public void onPawnAdded(Pawn pPawn)
-	{
-		pawns.add(pPawn);	
-	}
-	
 	
 	/**
 	 * Setup Core
@@ -172,10 +135,36 @@ public final class Core implements SceneObserver
 		
 		
 		systems = new ArrayList<>();
+		waitingSystems = new Stack<>();
 		
 		pawns = new TreeSet<>(Pawn.BY_SORT_POSITION_COMPARATOR);
+		waitingPawns = new Stack<>();
 		
 		AbstractScene.registerSceneObserver(this);
+	}
+
+	
+	/**
+	 * Updates the <code>GameSystem</code> and <code>Pawn</code> caches for when the <code>AbstractScene</code> changes.
+	 * Changes scenes at the end of the current frame.
+	 */
+	static void sceneChange()
+	{
+		sceneChange = true;		
+	}
+
+	
+	@Override
+	public void onSystemAdded(GameSystem pSystem)
+	{
+		waitingSystems.add(pSystem);
+	}
+
+	
+	@Override
+	public void onPawnAdded(Pawn pPawn)
+	{
+		waitingPawns.add(pPawn);	
 	}
 	
 	
@@ -188,7 +177,10 @@ public final class Core implements SceneObserver
 		
 		while(coreRunning)
 		{
-			// NO CODE ABOVE THIS LINE
+			/////////////////////////////
+			// NO CODE ABOVE THIS LINE //
+			/////////////////////////////
+			//CoreTime.beginFrame();
 			
 			if (sceneChange)
 			{
@@ -197,23 +189,17 @@ public final class Core implements SceneObserver
 				handleSceneChange();
 			}
 			
-			/* Uncomment when multi-threaded
-			while (corePaused)
-			{
-				if (!coreRunning)
-				{
-					instance.gameWindow.close();
-				}
-			}
-			*/
 			
-			CoreTime.beginFrame();
+			/*
+			 * Adds all waiting Behaviours to the Core
+			 */
+			addWaiting();
 			
 			
 			/*
 			 * Gives us how many frames are being built per second - Only works when frame rate is uncapped?
 			 */
-			frameRate = (int)(1/CoreTime.getLastDeltaTime());
+			//frameRate = (int)(1/CoreTime.getLastDeltaTime());
 			
 			
 			/*
@@ -238,7 +224,9 @@ public final class Core implements SceneObserver
 			 * Gives us the time that it took to complete this frame
 			 */
 			//CoreTime.endFrame(); // See comment below
-			// NO CODE BELOW THIS LINE
+			/////////////////////////////
+			// NO CODE BELOW THIS LINE //
+			/////////////////////////////
 			
 			/* Code necessary for if we need to prevent frames from being built too fast.
 			 * However, MinuetoBaseWindow handles this inside render() already
@@ -259,6 +247,53 @@ public final class Core implements SceneObserver
 
 		instance.gameWindow.close(); // TODO Handle Core break down inside function
 	}
+	
+	
+	private void handleSceneChange()
+	{
+		/*
+		 * Clear old Behaviours
+		 */
+		systems = new ArrayList<>();
+		waitingSystems.clear();
+		
+		pawns.clear();
+		waitingPawns.clear();
+		
+		
+		/*
+		 * Draw a background scene.
+		 */
+		sceneBackground = SceneManager.getActiveScene().getBackgroundImage();
+		
+		sceneColour = SceneManager.getActiveScene().getBackgroundColour();
+		
+		
+		/*
+		 * Initialise the Scene
+		 */
+		try
+		{
+			SceneManager.getActiveScene().initialiseScene();
+		} catch (MinuetoFileException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void addWaiting()
+	{
+		while (!waitingSystems.empty())
+		{
+			systems.add(waitingSystems.pop());
+		}
+		while (!waitingPawns.empty())
+		{
+			pawns.add(waitingPawns.pop());
+		}
+	}
+	
 	
 	/**
 	 * Executes the logic of <code>GameSystem</code> objects and <code>Pawn</code> objects in an <code>AbstractScene</code>.
@@ -315,6 +350,7 @@ public final class Core implements SceneObserver
 		}
 	}
 	
+	
 	/**
 	 * Renders the <code>Pawn</code> objects in an <code>AbstractScene</code>.
 	 */
@@ -353,6 +389,7 @@ public final class Core implements SceneObserver
 		
 		gameWindow.render();
 	}
+	
 	
 	private void drawSprite(Pawn pSprite)
 	{
