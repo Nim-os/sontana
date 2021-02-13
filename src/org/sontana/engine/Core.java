@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import org.minueto.MinuetoColor;
+import org.minueto.MinuetoFileException;
 import org.minueto.image.MinuetoImage;
 import org.minueto.image.MinuetoRectangle;
 import org.minueto.window.MinuetoFrame;
@@ -19,7 +20,7 @@ import org.sontana.tools.*;
  * @author Christophe Simon
  *
  */
-public final class Core
+public final class Core implements SceneObserver
 {
 	private static Core instance = null;
 	
@@ -34,10 +35,13 @@ public final class Core
 	
 	private final MinuetoWindow gameWindow;
 	private final float minDeltaTime;
+
+	private MinuetoImage sceneBackground;
+	private MinuetoColor sceneColour;
 	
 	private ArrayList<GameSystem> systems;
 	private TreeSet<Pawn> pawns;
-	
+
 	
 	/**
 	 * Run the <code>Core</code> with pScenes.
@@ -51,9 +55,6 @@ public final class Core
 		if(instance == null)
 			instance = new Core();
 		
-		/*
-		 * TODO Scene Validation
-		 */
 		SceneManager.addScenes(pScenes);
 		
 		SceneManager.loadScene(pScenes.get(0).getName());
@@ -106,15 +107,18 @@ public final class Core
 	 */
 	static void sceneChange()
 	{
-		sceneChange = true;	
-		
+		sceneChange = true;		
 	}
 	
 	private void handleSceneChange()
 	{
-		systems = new ArrayList<>(SceneManager.getActiveScene().getSystems());
+		/*
+		 * Clear old Behaviours
+		 */
+		systems = new ArrayList<>();
 		
 		pawns.clear();
+		
 		
 		/*
 		 * Draw a background scene.
@@ -125,16 +129,28 @@ public final class Core
 		
 		
 		/*
-		 * Add all Pawns from the new Scene to the cache with respect to the sorting order
+		 * Initialise the Scene
 		 */
-		for(Pawn p : SceneManager.getActiveScene().getPawns())
+		try
 		{
-			pawns.add(p);
-		}	
+			SceneManager.getActiveScene().initialiseScene();
+		} catch (MinuetoFileException e)
+		{
+			e.printStackTrace();
+		}
 	}
-	
-	private MinuetoImage sceneBackground;
-	private MinuetoColor sceneColour;
+
+	@Override
+	public void onSystemAdded(GameSystem pSystem)
+	{
+		systems.add(pSystem);
+	}
+
+	@Override
+	public void onPawnAdded(Pawn pPawn)
+	{
+		pawns.add(pPawn);	
+	}
 	
 	
 	/**
@@ -158,6 +174,8 @@ public final class Core
 		systems = new ArrayList<>();
 		
 		pawns = new TreeSet<>(Pawn.BY_SORT_POSITION_COMPARATOR);
+		
+		AbstractScene.registerSceneObserver(this);
 	}
 	
 	

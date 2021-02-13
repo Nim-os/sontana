@@ -143,7 +143,7 @@ public class SceneManager
 	
 	
 	/**
-	 * Load an <code>AbstractScene</code> of a given name into memory.
+	 * Load an <code>AbstractScene</code> of a given name into memory at the end of the current frame.
 	 * @param pSceneName the <code>AbstractScene</code> object's name.
 	 * @throws SceneManagerException if <code>AbstractScene</code> does not exist.
 	 */
@@ -156,7 +156,9 @@ public class SceneManager
 			throw new SceneManagerException("Error: Scene " + pSceneName + " does not exist.");
 		}
 		
+		
 		unloadScene(activeScene);
+		
 		
 		activeScene = scenes.get(pSceneName);
 		
@@ -164,17 +166,6 @@ public class SceneManager
 		{
 			throw new SceneManagerException("Fatal Error: Scene " + pSceneName + " exists but is assigned to null.");
 		}
-		
-		
-		try
-		{
-			activeScene.initialiseScene();
-		} 
-		catch (MinuetoFileException e)
-		{
-			// Catch any broken files
-			e.printStackTrace();
-		}		
 		
 		
 		Core.sceneChange();
