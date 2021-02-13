@@ -72,7 +72,7 @@ public class SceneManager
 					", scene already exists under different key.");
 		}
 		
-		
+		/*
 		try
 		{
 			Console.suppressLogs(true);
@@ -125,7 +125,7 @@ public class SceneManager
 			Console.logError("Failed to validate Scene " + pScene.getName() + "\n");
 			
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	
