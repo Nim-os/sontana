@@ -7,6 +7,7 @@ import java.util.List;
 import org.minueto.MinuetoColor;
 import org.minueto.MinuetoFileException;
 import org.minueto.image.MinuetoImage;
+import org.sontana.engine.SceneObserver;
 
 /**
  * <code>AbstractScene</code> objects represents different game stages.
@@ -117,6 +118,8 @@ public abstract class AbstractScene
 	{
 		sceneSystems.add(pSystem);
 		
+		observers.forEach(observer -> observer.onSystemAdded(pSystem));
+		
 		pSystem.initialise();
 	}
 	
@@ -136,6 +139,8 @@ public abstract class AbstractScene
 	final void addPawn(Pawn pPawn)
 	{
 		scenePawns.add(pPawn);
+
+		observers.forEach(observer -> observer.onPawnAdded(pPawn));
 		
 		pPawn.initialise();
 	}
@@ -202,5 +207,31 @@ public abstract class AbstractScene
 		}
 		
 		return lst;
+	}
+	
+		
+	/*
+	 * Observer
+	 */
+	
+	
+	private static ArrayList<SceneObserver> observers = new ArrayList<>();
+	
+	/**
+	 * 
+	 * @param pObserver
+	 */
+	public static void registerSceneObserver(SceneObserver pObserver)
+	{
+		observers.add(pObserver);
+	}
+	
+	/**
+	 * 
+	 * @param pObserver
+	 */
+	public static void unregisterSceneObserver(SceneObserver pObserver)
+	{
+		observers.remove(pObserver);
 	}
 }
