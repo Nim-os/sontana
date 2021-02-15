@@ -119,8 +119,6 @@ public abstract class AbstractScene
 		sceneSystems.add(pSystem);
 		
 		observers.forEach(observer -> observer.onSystemAdded(pSystem));
-		
-		pSystem.initialise();
 	}
 	
 	/**
@@ -141,8 +139,6 @@ public abstract class AbstractScene
 		scenePawns.add(pPawn);
 
 		observers.forEach(observer -> observer.onPawnAdded(pPawn));
-		
-		pPawn.initialise();
 	}
 	
 	/**
